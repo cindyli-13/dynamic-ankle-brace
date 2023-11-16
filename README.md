@@ -43,5 +43,10 @@ See [ESP-IDF Programming Guide: Getting Started](https://docs.espressif.com/proj
 ```bash
 cd examples/hello_world
 idf.py build
-idf.py -p <PORT> flash
+idf.py -p <PORT> flash monitor
 ```
+
+
+## Clang Format
+
+Make sure C/C++ source files are formatted following the clang format rule. It is recommended to turn on "Format On Save" if developing in VSCode.
