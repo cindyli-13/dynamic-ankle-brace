@@ -29,7 +29,6 @@ extern "C" {
 void app_main(void) {
   printf("MPU 9250 Test\n");
 
-  esp_err_t ret;
   spi_bus_config_t buscfg = {.mosi_io_num = PIN_NUM_MOSI,
                              .miso_io_num = PIN_NUM_MISO,
                              .sclk_io_num = PIN_NUM_CLK,
@@ -44,16 +43,15 @@ void app_main(void) {
                              .isr_cpu_id = ESP_INTR_CPU_AFFINITY_AUTO,
                              .intr_flags = 0};
 
-  ret = spi_bus_initialize(SPI_HOST, &buscfg, SPI_DMA_CH_AUTO);
-  ESP_ERROR_CHECK(ret);
+  ESP_ERROR_CHECK(spi_bus_initialize(SPI_HOST, &buscfg, SPI_DMA_CH_AUTO));
 
   MPU9250 imu(SPI_HOST);
-  imu.init(IMU_CONFIG);
+  ESP_ERROR_CHECK(imu.init(IMU_CONFIG));
 
   MPU9250::RawImuData imu_data;
 
   while (true) {
-    imu.read(imu_data);
+    ESP_ERROR_CHECK(imu.read(imu_data));
     printf(
         "accel_x %.3f accel_y %.3f accel_z %.3f gyro_x %.3f gyro_y %.3f gyro_z "
         "%.3f temp %.3f\n",
