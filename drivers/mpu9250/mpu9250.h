@@ -62,7 +62,7 @@ public:
 
     struct Config {
         uint8_t cs_pin;
-        uint16_t spi_clock_speed_hz;
+        int spi_clock_speed_hz;
         uint16_t sample_rate_hz;
         AccelFSR accel_fsr;
         GyroFSR gyro_fsr;

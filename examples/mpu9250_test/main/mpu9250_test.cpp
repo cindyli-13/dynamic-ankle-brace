@@ -12,12 +12,12 @@
 #define PIN_NUM_CLK  12
 #define PIN_NUM_CS   10
 
-static constexpr MPU9250::AccelFSR ACCEL_FSR = MPU9250::AccelFSR::_4G;
+static constexpr MPU9250::AccelFSR ACCEL_FSR = MPU9250::AccelFSR::_8G;
 static constexpr MPU9250::GyroFSR GYRO_FSR = MPU9250::GyroFSR::_1000DPS;
 
 static constexpr MPU9250::Config IMU_CONFIG = {
     .cs_pin = PIN_NUM_CS,
-    .spi_clock_speed_hz = 1000,
+    .spi_clock_speed_hz = 100000,
     .sample_rate_hz = 1000,
     .accel_fsr = ACCEL_FSR,
     .gyro_fsr = GYRO_FSR,
@@ -57,7 +57,7 @@ void app_main(void) {
 
     while (true) {
         imu.read(imu_data);
-        printf("accel (g): x=%.3f, y=%.3f, z=%.3f; gyro (dps): x=%.3f, y=%.3f, z=%.3f; temp (degC): %.3f\n", 
+        printf("accel_x %.3f accel_y %.3f accel_z %.3f gyro_x %.3f gyro_y %.3f gyro_z %.3f temp %.3f\n", 
                 MPU9250::ACCEL_RAW_TO_G(imu_data.accel.x, ACCEL_FSR),
                 MPU9250::ACCEL_RAW_TO_G(imu_data.accel.y, ACCEL_FSR),
                 MPU9250::ACCEL_RAW_TO_G(imu_data.accel.z, ACCEL_FSR),
@@ -66,7 +66,7 @@ void app_main(void) {
                 MPU9250::GYRO_RAW_TO_DPS(imu_data.gyro.z, GYRO_FSR),
                 MPU9250::TEMPERAURE_RAW_TO_DEG_C(imu_data.temperature));
 
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
 
