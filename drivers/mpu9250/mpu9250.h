@@ -83,8 +83,8 @@ class MPU9250 {
 
   MPU9250(spi_host_device_t spi_host) : spi_host_(spi_host) {}
 
-  void init(const Config& config);
-  void read(RawImuData& imu_data);
+  esp_err_t init(const Config& config);
+  esp_err_t read(RawImuData& imu_data);
 
  private:
   enum class Register : uint8_t {
@@ -122,18 +122,18 @@ class MPU9250 {
   spi_host_device_t spi_host_;
   spi_device_handle_t spi_handle_;
 
-  void reset();
-  void set_sleep(bool sleep);
-  void disable_i2c(bool disable);
-  void set_clock_source(ClockSource clock_source);
-  uint8_t whoami();
-  void set_fsr(AccelFSR accel_fsr, GyroFSR gyro_fsr);
-  void set_dlpf(AccelDLPF accel_dlpf, GyroDLPF gyro_dlpf);
-  void set_sample_rate(uint16_t rate_hz);
+  esp_err_t reset();
+  esp_err_t set_sleep(bool sleep);
+  esp_err_t disable_i2c(bool disable);
+  esp_err_t set_clock_source(ClockSource clock_source);
+  esp_err_t whoami(uint8_t& val);
+  esp_err_t set_fsr(AccelFSR accel_fsr, GyroFSR gyro_fsr);
+  esp_err_t set_dlpf(AccelDLPF accel_dlpf, GyroDLPF gyro_dlpf);
+  esp_err_t set_sample_rate(uint16_t rate_hz);
 
-  uint8_t read_reg(Register addr);
-  void read_bytes(Register addr, size_t len, uint8_t* buffer);
-  void write_reg(Register addr, uint8_t data);
-  void write_bit(Register addr, uint8_t bit, bool set);
-  void write_bits(Register addr, uint8_t lsb, size_t len, uint8_t data);
+  esp_err_t read_reg(Register addr, uint8_t& data);
+  esp_err_t read_bytes(Register addr, size_t len, uint8_t* buffer);
+  esp_err_t write_reg(Register addr, uint8_t data);
+  esp_err_t write_bit(Register addr, uint8_t bit, bool set);
+  esp_err_t write_bits(Register addr, uint8_t lsb, size_t len, uint8_t data);
 };
