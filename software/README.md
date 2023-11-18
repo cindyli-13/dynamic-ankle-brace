@@ -1,5 +1,5 @@
 # Project Dynamic Ankle Brace - Software
-Source code for Project Dynamic Ankle Brace (FYDP)
+Source code for Project Dynamic Ankle Brace (FYDP).
 
 ## Getting Started
 
