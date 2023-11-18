@@ -163,7 +163,7 @@ esp_err_t MPU9250::read_reg(Register addr, uint8_t& data) {
                                    .tx_buffer = nullptr,
                                    .rx_buffer = &data};
 
-  RETURN_ON_ERR(spi_device_polling_transmit(spi_handle_, &transaction));
+  RETURN_ON_ERR(spi_device_transmit(spi_handle_, &transaction));
   return ESP_OK;
 }
 
@@ -177,7 +177,7 @@ esp_err_t MPU9250::read_bytes(Register addr, size_t len, uint8_t* buffer) {
                                    .tx_buffer = nullptr,
                                    .rx_buffer = buffer};
 
-  RETURN_ON_ERR(spi_device_polling_transmit(spi_handle_, &transaction));
+  RETURN_ON_ERR(spi_device_transmit(spi_handle_, &transaction));
   return ESP_OK;
 }
 
@@ -191,7 +191,7 @@ esp_err_t MPU9250::write_reg(Register addr, uint8_t data) {
                                    .tx_buffer = &data,
                                    .rx_buffer = nullptr};
 
-  RETURN_ON_ERR(spi_device_polling_transmit(spi_handle_, &transaction));
+  RETURN_ON_ERR(spi_device_transmit(spi_handle_, &transaction));
   return ESP_OK;
 }
 
