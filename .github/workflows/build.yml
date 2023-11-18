@@ -1,0 +1,34 @@
+name: build
+on: [push, pull_request]
+
+jobs:
+  collect-example-apps:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.example_app_folders.outputs.matrix }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Collect example app folders
+        id: example_app_folders
+        run: echo "matrix=$(ls -d examples/*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> ${GITHUB_OUTPUT}
+
+  build:
+    needs: collect-example-apps
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example_app: ${{ fromJson(needs.collect-example-apps.outputs.matrix) }} 
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - name: esp-idf build
+      uses: espressif/esp-idf-ci-action@v1
+      with:
+        esp_idf_version: v5.1
+        target: esp32s3
+        path: '${{ matrix.example_app }}'
