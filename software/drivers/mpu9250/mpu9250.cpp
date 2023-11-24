@@ -32,7 +32,7 @@ esp_err_t MPU9250::init(const Config& config) {
 
   RETURN_ON_ERR(reset());
   RETURN_ON_ERR(set_sleep(false));
-  RETURN_ON_ERR(disable_i2c(false));
+  RETURN_ON_ERR(disable_i2c(true));
   RETURN_ON_ERR(set_clock_source(ClockSource::PLL));
 
   // Verify device whoami
