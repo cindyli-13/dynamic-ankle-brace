@@ -25,6 +25,7 @@ Source code for Project Dynamic Ankle Brace (FYDP).
     export IDF_TOOLS_PATH=<path-to-repo>/software/external/esp/.espressif
     export PATH="$IDF_PATH/tools:$PATH"
     ```
+    Tip: add the above lines to your `~/.bashrc` or `~/.zshrc` file so that you don't have to re-export the environment variables when you open a new terminal.
 
 4. Set up tools
     ```bash
@@ -34,6 +35,10 @@ Source code for Project Dynamic Ankle Brace (FYDP).
 5. Run
     ```bash
     . ./external/esp/esp-idf/export.sh
+    ```
+    Tip: add the following line to your `~/.bashrc` or `~/.zshrc` file so that you don't have to rerun the script when you open a new terminal (**ONLY** do this if you've added the export lines in step 3 above).
+    ```bash
+    source $IDF_PATH/export.sh > /dev/null
     ```
 
 See [ESP-IDF Programming Guide: Getting Started](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/linux-macos-setup.html#get-started-linux-macos-first-steps) for reference
