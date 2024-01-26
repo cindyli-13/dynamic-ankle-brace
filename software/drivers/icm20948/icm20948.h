@@ -1,6 +1,8 @@
 // ICM 20948 IMU driver (SPI interface)
 // Datasheet: https://invensense.tdk.com/wp-content/uploads/2021/10/DS-000189-ICM-20948-v1.5.pdf
 
+#pragma once
+
 #include <inttypes.h>
 
 #include "driver/spi_master.h"

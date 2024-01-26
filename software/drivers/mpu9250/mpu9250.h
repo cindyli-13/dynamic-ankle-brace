@@ -2,6 +2,8 @@
 // Datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/RM-MPU-9250A-00-v1.6.pdf
 // Register map: https://invensense.tdk.com/wp-content/uploads/2015/02/RM-MPU-9250A-00-v1.6.pdf
 
+#pragma once
+
 #include <inttypes.h>
 
 #include "driver/spi_master.h"
