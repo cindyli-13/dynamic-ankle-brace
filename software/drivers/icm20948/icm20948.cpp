@@ -45,6 +45,7 @@ esp_err_t ICM20948::init(const Config& config) {
   RETURN_ON_ERR(set_sleep(false));
   RETURN_ON_ERR(disable_i2c(true));
   RETURN_ON_ERR(set_low_power(false));
+  RETURN_ON_ERR(init_interrupt(false));
 
   RETURN_ON_ERR(set_accel_config(config.accel_fsr, config.accel_dlpf));
   RETURN_ON_ERR(set_gyro_config(config.gyro_fsr, config.gyro_dlpf));
@@ -147,6 +148,42 @@ esp_err_t ICM20948::set_low_power(bool enable) {
 
   RETURN_ON_ERR(
       write_reg(static_cast<uint8_t>(RegAddrBank0::PWR_MGMT_1), reg_val));
+  return ESP_OK;
+}
+
+esp_err_t ICM20948::init_interrupt(bool active_low) {
+  uint8_t reg_val;
+
+  RETURN_ON_ERR(set_bank(0));
+  RETURN_ON_ERR(
+      read_reg(static_cast<uint8_t>(RegAddrBank0::INT_PIN_CONFIG), reg_val));
+
+  // Configure interrupt active low/high
+  if (active_low) {
+    reg_val |= static_cast<uint8_t>(IntPinConfigBits::INT1_ACTL);
+  } else {
+    reg_val &= ~static_cast<uint8_t>(IntPinConfigBits::INT1_ACTL);
+  }
+  reg_val &= ~static_cast<uint8_t>(
+      IntPinConfigBits::INT1_OPEN);  // Configure interrupt as push-pull
+  reg_val &= ~static_cast<uint8_t>(
+      IntPinConfigBits::
+          INT1_LATCH__EN);  // Configure interrupt pulse width as 50us
+  reg_val |= static_cast<uint8_t>(
+      IntPinConfigBits::
+          INT_ANYRD_2CLEAR);  // Clear interrupt when any read is performed
+
+  // Set interrupt config
+  RETURN_ON_ERR(
+      write_reg(static_cast<uint8_t>(RegAddrBank0::INT_PIN_CONFIG), reg_val));
+
+  // Enable raw data ready interrupt
+  RETURN_ON_ERR(
+      read_reg(static_cast<uint8_t>(RegAddrBank0::INT_ENABLE_1), reg_val));
+  reg_val |= static_cast<uint8_t>(IntEnable1Bits::RawData0Ready);
+  RETURN_ON_ERR(
+      write_reg(static_cast<uint8_t>(RegAddrBank0::INT_ENABLE_1), reg_val));
+
   return ESP_OK;
 }
 
