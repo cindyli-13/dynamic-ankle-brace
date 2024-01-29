@@ -159,6 +159,7 @@ class ICM20948 {
   esp_err_t disable_i2c(bool disable);
   esp_err_t whoami(uint8_t& val);
   esp_err_t set_low_power(bool enable);
+  esp_err_t init_interrupt(bool active_low);
   esp_err_t set_accel_config(AccelFSR fsr, AccelDLPF dlpf);
   esp_err_t set_gyro_config(GyroFSR fsr, GyroDLPF dlpf);
   esp_err_t set_sample_rate(uint16_t rate_hz);
