@@ -8,16 +8,15 @@
 template <typename T>
 class DataBuffer {
  public:
-  DataBuffer() : _has_data(false) {
-    _mutex = xSemaphoreCreateMutexStatic(&_mutex_buffer);
-    assert(_mutex);
+  DataBuffer() : has_data_(false) {
+    assert(mut_ = xSemaphoreCreateMutexStatic(&mut_buffer_));
   }
 
   bool read(T& data) {
     // TODO: set timeout?
-    if (_has_data && xSemaphoreTake(_mutex, portMAX_DELAY) == pdTRUE) {
-      data = *reinterpret_cast<T*>(_data);
-      xSemaphoreGive(_mutex);
+    if (has_data_ && xSemaphoreTake(mut_, portMAX_DELAY) == pdTRUE) {
+      data = *reinterpret_cast<T*>(data_);
+      xSemaphoreGive(mut_);
       return true;
     } else {
       return false;
@@ -26,10 +25,10 @@ class DataBuffer {
 
   bool write(T& data) {
     // TODO: set timeout?
-    if (xSemaphoreTake(_mutex, portMAX_DELAY) == pdTRUE) {
-      *reinterpret_cast<T*>(_data) = data;
-      _has_data = true;
-      xSemaphoreGive(_mutex);
+    if (xSemaphoreTake(mut_, portMAX_DELAY) == pdTRUE) {
+      *reinterpret_cast<T*>(data_) = data;
+      has_data_ = true;
+      xSemaphoreGive(mut_);
       return true;
     } else {
       return false;
@@ -37,8 +36,8 @@ class DataBuffer {
   }
 
  private:
-  alignas(T) uint8_t _data[sizeof(T)];
-  bool _has_data;
-  StaticSemaphore_t _mutex_buffer;
-  SemaphoreHandle_t _mutex;
+  alignas(T) uint8_t data_[sizeof(T)];
+  bool has_data_;
+  StaticSemaphore_t mut_buffer_;
+  SemaphoreHandle_t mut_;
 };

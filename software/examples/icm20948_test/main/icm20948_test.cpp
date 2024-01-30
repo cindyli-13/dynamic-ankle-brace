@@ -34,7 +34,7 @@ static constexpr ICM20948::Config IMU_CONFIG = {
 static SemaphoreHandle_t interrupt_flag;
 static StaticSemaphore_t interrupt_flag_buffer;
 
-void interrupt_handler(void* arg) {
+void IRAM_ATTR interrupt_handler(void* arg) {
   BaseType_t higher_priority_task_woken = pdFALSE;
   xSemaphoreGiveFromISR(interrupt_flag, &higher_priority_task_woken);
   portYIELD_FROM_ISR(higher_priority_task_woken);

@@ -16,15 +16,14 @@ class Task {
   };
 
   Task(const Config& config, void* const param)
-      : _config(&config), _param_wrapper({this, param}) {}
+      : config_(&config), param_wrapper_({this, param}) {}
 
   void create() {
     init();
-    _handle = xTaskCreateStaticPinnedToCore(
-        run_wrapper, _config->name, _config->stack_depth, &_param_wrapper,
-        _config->priority, _config->stack_buffer, &_task_buffer,
-        _config->core_id);
-    assert(_handle);
+    assert(handle_ = xTaskCreateStaticPinnedToCore(
+               run_wrapper, config_->name, config_->stack_depth,
+               &param_wrapper_, config_->priority, config_->stack_buffer,
+               &task_buffer_, config_->core_id));
   }
 
  private:
@@ -41,8 +40,8 @@ class Task {
   virtual void init() {}
   virtual void run(void* param) = 0;
 
-  const Config* const _config;
-  ParamWrapper _param_wrapper;
-  StaticTask_t _task_buffer;
-  TaskHandle_t _handle;
+  const Config* const config_;
+  ParamWrapper param_wrapper_;
+  StaticTask_t task_buffer_;
+  TaskHandle_t handle_;
 };

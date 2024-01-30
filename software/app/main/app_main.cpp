@@ -18,9 +18,9 @@ static StackType_t imu_read_task_stack[DEFAULT_TASK_STACK_SIZE];
 static Task::Config imu_read_task_config = {
     .name = "IMU Read Task",
     .stack_depth = DEFAULT_TASK_STACK_SIZE,
-    .priority = tskIDLE_PRIORITY,
+    .priority = 10,
     .stack_buffer = imu_read_task_stack,
-    .core_id = tskNO_AFFINITY,
+    .core_id = 0,
 };
 static IMUReadTask imu_read_task(imu_read_task_config, &imu_read_task_param);
 
