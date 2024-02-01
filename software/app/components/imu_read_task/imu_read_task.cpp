@@ -85,11 +85,11 @@ void IMUReadTask::init() {
 
 void IMUReadTask::run(void* param) {
   Param* task_param = static_cast<Param*>(param);
-  DataBuffer<IMUData>* imu_data_buffer = task_param->imu_data_buffer;
+  shared::IMUDataBuffer* imu_data_buffer = task_param->imu_data_buffer;
 
   ICM20948::RawImuData raw_imu1_data;
   ICM20948::RawImuData raw_imu2_data;
-  IMUData imu_data_scaled;
+  shared::IMUData imu_data_scaled;
 
   while (true) {
     if (!xSemaphoreTake(int1_sem_, portMAX_DELAY)) {
@@ -135,7 +135,7 @@ void IMUReadTask::run(void* param) {
         ICM20948::GYRO_RAW_TO_DPS(raw_imu2_data.gyro.z, GYRO_FSR);
 
     // Update IMU data buffer with new data
-    if (!imu_data_buffer->write(imu_data_scaled)) {
+    if (!imu_data_buffer->send(imu_data_scaled)) {
       printf("IMU data update failed\n");  // TODO: better error handling
     }
   }

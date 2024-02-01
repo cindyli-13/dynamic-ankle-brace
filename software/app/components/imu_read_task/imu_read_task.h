@@ -6,40 +6,14 @@
 #include "driver/gpio.h"
 #include "freertos/semphr.h"
 #include "icm20948.h"
+#include "shared.h"
 #include "task.h"
 
+// Task for reading data from IMUs
 class IMUReadTask : public Task {
  public:
-  // Gyro data in deg/s, accelerometer data in g's
-  struct IMUData {
-    struct {
-      struct {
-        float x;
-        float y;
-        float z;
-      } gyro;
-      struct {
-        float x;
-        float y;
-        float z;
-      } accel;
-    } imu1;
-    struct {
-      struct {
-        float x;
-        float y;
-        float z;
-      } gyro;
-      struct {
-        float x;
-        float y;
-        float z;
-      } accel;
-    } imu2;
-  };
-
   struct Param {
-    DataBuffer<IMUData>* imu_data_buffer;
+    shared::IMUDataBuffer* imu_data_buffer;
   };
 
   IMUReadTask(const Task::Config& config, Param* const param)

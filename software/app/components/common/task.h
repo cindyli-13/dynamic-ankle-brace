@@ -4,8 +4,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+// Wrapper around FreeRTOS task
+// Derived classes should implement the init() and run() methods
 class Task {
-
  public:
   struct Config {
     const char* const name;

@@ -3,13 +3,14 @@
 #include "freertos/FreeRTOS.h"
 #include "imu_read_task.h"
 #include "sdkconfig.h"
+#include "shared.h"
 #include "task.h"
 
 // Constants
 static constexpr size_t DEFAULT_TASK_STACK_SIZE = 1024;
 
 // Shared buffers
-static DataBuffer<IMUReadTask::IMUData> imu_data_buffer;
+static shared::IMUDataBuffer imu_data_buffer;
 
 // IMU Read Task
 static IMUReadTask::Param imu_read_task_param = {.imu_data_buffer =
