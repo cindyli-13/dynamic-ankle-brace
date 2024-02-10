@@ -38,7 +38,7 @@ static constexpr MPU9250::Config IMU2_CONFIG = {
 extern "C" {
 
 void app_main(void) {
-  printf("Inversion Measuring\n");
+  printf("Inversion Measuring Test\n");
 
   spi_bus_config_t buscfg = {.mosi_io_num = PIN_NUM_MOSI,
                              .miso_io_num = PIN_NUM_MISO,
