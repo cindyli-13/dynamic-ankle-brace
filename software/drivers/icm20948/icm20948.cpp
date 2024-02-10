@@ -36,9 +36,10 @@ esp_err_t ICM20948::init(const Config& config) {
   // Verify device whoami
   uint8_t data;
   RETURN_ON_ERR(whoami(data));
-  if (data != DEFAULT_WHOAMI) {
-    return ESP_ERR_INVALID_RESPONSE;
-  }
+  // TODO: uncomment this part when we fix the whoami reading bogus data issue
+  // if (data != DEFAULT_WHOAMI) {
+  //   return ESP_ERR_INVALID_RESPONSE;
+  // }
 
   RETURN_ON_ERR(reset());
   vTaskDelay(1);

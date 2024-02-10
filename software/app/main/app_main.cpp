@@ -7,7 +7,7 @@
 #include "task.h"
 
 // Constants
-static constexpr size_t DEFAULT_TASK_STACK_SIZE = 1024;
+static constexpr size_t DEFAULT_TASK_STACK_SIZE = 8192;
 
 // Shared buffers
 static shared::IMUDataBuffer imu_data_buffer;

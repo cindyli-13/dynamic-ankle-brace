@@ -8,6 +8,9 @@ void IMUReadTask::interrupt_handler(void* arg) {
 }
 
 void IMUReadTask::init() {
+  assert(int1_sem_ = xSemaphoreCreateBinaryStatic(&int1_sem_buffer_));
+  assert(int2_sem_ = xSemaphoreCreateBinaryStatic(&int2_sem_buffer_));
+
   // Configure INT1 interrupts for both IMUs
   gpio_config_t int1_cfg = {.pin_bit_mask = (1ULL << PIN_NUM_INT1),
                             .mode = GPIO_MODE_INPUT,
@@ -28,9 +31,6 @@ void IMUReadTask::init() {
       gpio_isr_handler_add(PIN_NUM_INT1, interrupt_handler, int1_sem_));
   ESP_ERROR_CHECK(
       gpio_isr_handler_add(PIN_NUM_INT2, interrupt_handler, int2_sem_));
-
-  assert(int1_sem_ = xSemaphoreCreateBinaryStatic(&int1_sem_buffer_));
-  assert(int2_sem_ = xSemaphoreCreateBinaryStatic(&int2_sem_buffer_));
 
   // First need to convert core_id to intr_cpu_id_t enum type
   intr_cpu_id_t core_id;
