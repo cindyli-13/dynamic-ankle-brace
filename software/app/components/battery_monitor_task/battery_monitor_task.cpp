@@ -1,72 +1,63 @@
 #include "battery_monitor_task.h"
 
-bool BatteryMonitorTask::adc_callback(adc_continuous_handle_t handle,
-                                      const adc_continuous_evt_data_t* edata,
-                                      void* user_data) {
-  BaseType_t higher_priority_task_woken = pdFALSE;
-  xSemaphoreGiveFromISR(static_cast<SemaphoreHandle_t>(user_data),
-                        &higher_priority_task_woken);
-  return (higher_priority_task_woken == pdTRUE);
-}
-
 void BatteryMonitorTask::init() {
-  assert(adc_sem_ = xSemaphoreCreateBinaryStatic(&adc_sem_buffer_));
-
-  adc_continuous_handle_cfg_t adc_config = {
-      .max_store_buf_size = 16,
-      .conv_frame_size = sizeof(adc_result_),
+  adc_oneshot_unit_init_cfg_t adc_init_cfg = {
+      .unit_id = ADC_UNIT,
   };
-  ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &adc_));
+  ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc_init_cfg, &adc_));
 
-  adc_digi_pattern_config_t adc_pattern = {
+  adc_oneshot_chan_cfg_t adc_channel_cfg = {
       .atten = ADC_ATTENUATION,
-      .channel = ADC_CHANNEL,
-      .unit = ADC_UNIT,
-      .bit_width = ADC_BITWIDTH_DEFAULT,
-  };
-  adc_continuous_config_t dig_cfg = {
-      .pattern_num = 1,
-      .adc_pattern = &adc_pattern,
-      .sample_freq_hz = 10,
-      .conv_mode = ADC_CONV_SINGLE_UNIT_1,
-      .format = ADC_DIGI_OUTPUT_FORMAT_TYPE2,
-  };
-  ESP_ERROR_CHECK(adc_continuous_config(adc_, &dig_cfg));
-
-  adc_continuous_evt_cbs_t cbs = {
-      .on_conv_done = adc_callback,
+      .bitwidth = ADC_BITWIDTH,
   };
   ESP_ERROR_CHECK(
-      adc_continuous_register_event_callbacks(adc_, &cbs, this->adc_sem_));
-  ESP_ERROR_CHECK(adc_continuous_start(adc_));
+      adc_oneshot_config_channel(adc_, ADC_CHANNEL, &adc_channel_cfg));
+
+  adc_cali_curve_fitting_config_t adc_cali_cfg = {
+      .unit_id = ADC_UNIT,
+      .chan = ADC_CHANNEL,
+      .atten = ADC_ATTENUATION,
+      .bitwidth = ADC_BITWIDTH,
+  };
+  ESP_ERROR_CHECK(
+      adc_cali_create_scheme_curve_fitting(&adc_cali_cfg, &adc_cali_));
 
   green_led_.init();
   red_led_.init();
 }
 
 void BatteryMonitorTask::run(void* param) {
-  uint32_t adc_result = 0;
-  uint32_t adc_num_results = 0;
+  int adc_raw_data;
+  int vbatt_mV;
   while (true) {
-    if (!xSemaphoreTake(adc_sem_, portMAX_DELAY)) {
-      printf(
-          "Failed to acquire ADC semaphore!\n");  // TODO: better error handling
-      continue;
-    }
+    ESP_ERROR_CHECK(adc_oneshot_read(adc_, ADC_CHANNEL, &adc_raw_data));
+    ESP_ERROR_CHECK(
+        adc_cali_raw_to_voltage(adc_cali_, adc_raw_data, &vbatt_mV));
+    // Need to convert from vbatt_monitor to vbatt due to voltage divider circuit
+    vbatt_mV *= VBATT_MONITOR_TO_VBATT;
+    printf("vbatt: %d mV\n", vbatt_mV);
+    update_state(vbatt_mV);
 
-    esp_err_t ret = adc_continuous_read(adc_, &adc_result, sizeof(adc_result_),
-                                        &adc_num_results, 0);
-    if (ret == ESP_OK) {
-      adc_digi_output_data_t* adc_output_data =
-          reinterpret_cast<adc_digi_output_data_t*>(&adc_result);
-      uint32_t adc_data = adc_output_data->type2.data;
-
-      // TODO: do something with the data
-    }
-
-    vTaskDelay(1);
+    // Run at 10Hz
+    vTaskDelay(100 / portTICK_PERIOD_MS);
   }
 
-  ESP_ERROR_CHECK(adc_continuous_stop(adc_));
-  ESP_ERROR_CHECK(adc_continuous_deinit(adc_));
+  ESP_ERROR_CHECK(adc_oneshot_del_unit(adc_));
+  ESP_ERROR_CHECK(adc_cali_delete_scheme_curve_fitting(adc_cali_));
+}
+
+void BatteryMonitorTask::update_state(int vbatt_mV) {
+  if (vbatt_mV > BATTERY_GOOD_THRESHOLD_MV) {
+    if (state_ != BatteryState::Good) {
+      state_ = BatteryState::Good;
+      green_led_.activate();
+      red_led_.deactivate();
+    }
+  } else {
+    if (state_ != BatteryState::Low) {
+      state_ = BatteryState::Low;
+      green_led_.deactivate();
+      red_led_.activate();
+    }
+  }
 }

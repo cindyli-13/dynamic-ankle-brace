@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "battery_monitor_task.h"
 #include "data_buffer.h"
 #include "freertos/FreeRTOS.h"
 #include "imu_read_task.h"
@@ -25,8 +26,20 @@ static Task::Config imu_read_task_config = {
 };
 static IMUReadTask imu_read_task(imu_read_task_config, &imu_read_task_param);
 
+// Battery Monitor Task
+static StackType_t battery_monitor_task_stack[DEFAULT_TASK_STACK_SIZE];
+static Task::Config battery_monitor_task_config = {
+    .name = "Battery Monitor Task",
+    .stack_depth = DEFAULT_TASK_STACK_SIZE,
+    .priority = 6,
+    .stack_buffer = battery_monitor_task_stack,
+    .core_id = 0,
+};
+static BatteryMonitorTask battery_monitor_task(battery_monitor_task_config);
+
 extern "C" {
 void app_main(void) {
   imu_read_task.create();
+  battery_monitor_task.create();
 }
 }
