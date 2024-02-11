@@ -1,2 +1,3 @@
 build/
 .espressif/
+managed_components/
