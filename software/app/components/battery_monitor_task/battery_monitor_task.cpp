@@ -28,15 +28,20 @@ void BatteryMonitorTask::init() {
 
 void BatteryMonitorTask::run(void* param) {
   int adc_raw_data;
-  int vbatt_mV;
+  int vbatt_monitor_mV;
   while (true) {
     ESP_ERROR_CHECK(adc_oneshot_read(adc_, ADC_CHANNEL, &adc_raw_data));
     ESP_ERROR_CHECK(
-        adc_cali_raw_to_voltage(adc_cali_, adc_raw_data, &vbatt_mV));
+        adc_cali_raw_to_voltage(adc_cali_, adc_raw_data, &vbatt_monitor_mV));
+
     // Need to convert from vbatt_monitor to vbatt due to voltage divider circuit
-    vbatt_mV *= VBATT_MONITOR_TO_VBATT;
-    printf("vbatt: %d mV\n", vbatt_mV);
-    update_state(vbatt_mV);
+    // Also apply exponential moving average filter to vbatt measurement
+    vbatt_mV_ = (VBATT_EMA_FILTER_ALPHA * vbatt_mV_) +
+                (vbatt_monitor_mV * VBATT_MONITOR_TO_VBATT *
+                 (1 - VBATT_EMA_FILTER_ALPHA));
+
+    printf("vbatt_mV %.2f\n", vbatt_mV_);
+    update_state();
 
     // Run at 10Hz
     vTaskDelay(100 / portTICK_PERIOD_MS);
@@ -46,8 +51,8 @@ void BatteryMonitorTask::run(void* param) {
   ESP_ERROR_CHECK(adc_cali_delete_scheme_curve_fitting(adc_cali_));
 }
 
-void BatteryMonitorTask::update_state(int vbatt_mV) {
-  if (vbatt_mV > BATTERY_GOOD_THRESHOLD_MV) {
+void BatteryMonitorTask::update_state() {
+  if (vbatt_mV_ > BATTERY_GOOD_THRESHOLD_MV) {
     if (state_ != BatteryState::Good) {
       state_ = BatteryState::Good;
       green_led_.activate();

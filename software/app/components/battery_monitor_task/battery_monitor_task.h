@@ -20,7 +20,8 @@ class BatteryMonitorTask : public Task {
         green_led_(PIN_NUM_GREEN_LED, true),
         red_led_(PIN_NUM_RED_LED, true),
         adc_(nullptr),
-        adc_cali_(nullptr) {}
+        adc_cali_(nullptr),
+        vbatt_mV_(0.0f) {}
 
  private:
   static constexpr gpio_num_t PIN_NUM_GREEN_LED = GPIO_NUM_5;
@@ -31,8 +32,10 @@ class BatteryMonitorTask : public Task {
   static constexpr adc_atten_t ADC_ATTENUATION = ADC_ATTEN_DB_11;
   static constexpr adc_bitwidth_t ADC_BITWIDTH = ADC_BITWIDTH_DEFAULT;
 
-  static constexpr int BATTERY_GOOD_THRESHOLD_MV = 3200;
+  static constexpr float BATTERY_GOOD_THRESHOLD_MV = 3400.0f;
   static constexpr float VBATT_MONITOR_TO_VBATT = 1.304f;
+
+  static constexpr float VBATT_EMA_FILTER_ALPHA = 0.4f;
 
   BatteryState state_;
 
@@ -42,8 +45,9 @@ class BatteryMonitorTask : public Task {
   adc_oneshot_unit_handle_t adc_;
   adc_cali_handle_t adc_cali_;
 
-  void init_adc();
-  void update_state(int vbatt_mV);
+  float vbatt_mV_;
+
+  void update_state();
 
   void init();
   void run(void* param);
