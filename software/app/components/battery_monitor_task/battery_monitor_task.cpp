@@ -40,11 +40,10 @@ void BatteryMonitorTask::run(void* param) {
                 (vbatt_monitor_mV * VBATT_MONITOR_TO_VBATT *
                  (1 - VBATT_EMA_FILTER_ALPHA));
 
-    printf("vbatt_mV %.2f\n", vbatt_mV_);
     update_state();
 
-    // Run at 10Hz
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    // Run at 1Hz
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 
   ESP_ERROR_CHECK(adc_oneshot_del_unit(adc_));
@@ -58,11 +57,18 @@ void BatteryMonitorTask::update_state() {
       green_led_.activate();
       red_led_.deactivate();
     }
-  } else {
+  } else if (vbatt_mV_ > BATTERY_LOW_THRESHOLD_MV) {
     if (state_ != BatteryState::Low) {
       state_ = BatteryState::Low;
       green_led_.deactivate();
       red_led_.activate();
     }
+  } else {
+    if (state_ != BatteryState::CriticallyLow) {
+      state_ = BatteryState::CriticallyLow;
+      green_led_.deactivate();
+      red_led_.deactivate();
+    }
+    red_led_.toggle();
   }
 }

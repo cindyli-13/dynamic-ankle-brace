@@ -9,8 +9,9 @@
 class BatteryMonitorTask : public Task {
  public:
   enum class BatteryState {
-    Low,
     Good,
+    Low,
+    CriticallyLow,
     Unknown,
   };
 
@@ -33,6 +34,7 @@ class BatteryMonitorTask : public Task {
   static constexpr adc_bitwidth_t ADC_BITWIDTH = ADC_BITWIDTH_DEFAULT;
 
   static constexpr float BATTERY_GOOD_THRESHOLD_MV = 3400.0f;
+  static constexpr float BATTERY_LOW_THRESHOLD_MV = 3200.0f;
   static constexpr float VBATT_MONITOR_TO_VBATT = 1.304f;
 
   static constexpr float VBATT_EMA_FILTER_ALPHA = 0.4f;
