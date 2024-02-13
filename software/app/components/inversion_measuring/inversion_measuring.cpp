@@ -31,3 +31,9 @@ float InversionMeasuring::get_inversion_speed(
   // Verify this on actual setup
   return relative_angular_vel(1);
 }
+
+float InversionMeasuring::get_inversion_speed(shared::IMUData& imu_data) {
+  return get_inversion_speed(imu_data.imu1.gyro.x, imu_data.imu1.gyro.y,
+                             imu_data.imu1.gyro.z, imu_data.imu2.gyro.x,
+                             imu_data.imu2.gyro.y, imu_data.imu2.gyro.z);
+}

@@ -5,6 +5,7 @@
 #include "imu_read_task.h"
 #include "sdkconfig.h"
 #include "shared.h"
+#include "state_machine_task.h"
 #include "task.h"
 
 // Constants
@@ -26,6 +27,21 @@ static Task::Config imu_read_task_config = {
 };
 static IMUReadTask imu_read_task(imu_read_task_config, &imu_read_task_param);
 
+// State Machine task
+static StackType_t state_machine_task_stack[DEFAULT_TASK_STACK_SIZE];
+static Task::Config state_machine_task_config = {
+    .name = "State Machine Task",
+    .stack_depth = DEFAULT_TASK_STACK_SIZE,
+    .priority = 9,
+    .stack_buffer = state_machine_task_stack,
+    .core_id = 0,
+};
+static StateMachineTask::Param state_machine_task_param = {
+    .imu_data_buffer = &imu_data_buffer,
+};
+static StateMachineTask state_machine_task(state_machine_task_config,
+                                           &state_machine_task_param);
+
 // Battery Monitor Task
 static StackType_t battery_monitor_task_stack[DEFAULT_TASK_STACK_SIZE];
 static Task::Config battery_monitor_task_config = {
@@ -40,6 +56,7 @@ static BatteryMonitorTask battery_monitor_task(battery_monitor_task_config);
 extern "C" {
 void app_main(void) {
   imu_read_task.create();
+  state_machine_task.create();
   battery_monitor_task.create();
 }
 }
