@@ -18,7 +18,7 @@ esp_err_t ICM20948::init(const Config& config) {
       .command_bits = 0,
       .address_bits = 8,
       .dummy_bits = 0,
-      .mode = 3,
+      .mode = 0,
       .clock_source = SPI_CLK_SRC_DEFAULT,
       .duty_cycle_pos = 0,
       .cs_ena_pretrans = 0,
@@ -42,7 +42,7 @@ esp_err_t ICM20948::init(const Config& config) {
   // }
 
   RETURN_ON_ERR(reset());
-  vTaskDelay(1);
+  vTaskDelay(10 / portTICK_PERIOD_MS);
   RETURN_ON_ERR(set_sleep(false));
   RETURN_ON_ERR(disable_i2c(true));
   RETURN_ON_ERR(set_low_power(false));

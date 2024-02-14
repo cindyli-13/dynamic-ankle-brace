@@ -15,15 +15,15 @@ class DataBuffer {
   bool send(T& data) {
     if (uxQueueSpacesAvailable(handle_) == 0) {
       T dummy;
-      xQueueReceive(handle_, &dummy, portMAX_DELAY);  // TODO: add timeout?
+      xQueueReceive(handle_, &dummy, 0);
     }
-    // TODO: add timeout?
-    return xQueueSend(handle_, &data, portMAX_DELAY) == pdTRUE;
+    // TODO: catch race condition?
+    return xQueueSend(handle_, &data, 0) == pdTRUE;
   }
 
   bool receive(T& data) {
     // TODO: add timeout?
-    return xQueueReceive(handle_, &data, portMAX_DELAY) == pdTRUE;
+    return xQueueReceive(handle_, &data, 0) == pdTRUE;
   }
 
  private:
