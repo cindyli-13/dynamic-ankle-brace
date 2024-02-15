@@ -4,6 +4,7 @@
 #include "driver/gpio.h"
 #include "gpio.h"
 #include "inversion_measuring.h"
+#include "rgb_led.h"
 #include "shared.h"
 #include "task.h"
 
@@ -39,6 +40,7 @@ class StateMachineTask : public Task {
   Gpio trigger_;
   InversionMeasuring inversion_measuring_;
   State state_;
+  RgbLed rgb_led_;
   std::deque<shared::IMUData> imu_data_history_;
   float filtered_inversion_speed_;
   float filtered_imu_1_accel_variance_;
@@ -50,4 +52,5 @@ class StateMachineTask : public Task {
 
   void init();
   void run(void* param);
+  void set_status_led(State state);
 };

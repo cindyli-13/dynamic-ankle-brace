@@ -109,7 +109,25 @@ void StateMachineTask::run(void* param) {
         }
         break;
     }
+    set_status_led(state_);
 
     vTaskDelay(1 / portTICK_PERIOD_MS);  // run at 1 kHz
+  }
+}
+
+void StateMachineTask::set_status_led(State state) {
+  switch (state) {
+    case State::kIdle:
+      rgb_led_.set(0, 0, 16);  // blue
+      break;
+    case State::kActive:
+      rgb_led_.set(0, 16, 0);  // green
+      break;
+    case State::kActuated:
+      rgb_led_.set(16, 0, 0);  // red
+      break;
+    case State::kCalibrating:
+      rgb_led_.set(16, 0, 16);  // purple
+      break;
   }
 }
