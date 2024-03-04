@@ -7,8 +7,11 @@ void StateMachineTask::init() {
   filtered_imu_2_accel_variance_ = 0;
   idle_counter_ = 0;
   actuated_counter_ = 0;
+  calibration_sample_counter_ = 0;
+  calibration_data_ = {0};
   trigger_.init();
   trigger_.deactivate();
+  rgb_led_.init();
 }
 
 void StateMachineTask::run(void* param) {
@@ -61,18 +64,20 @@ void StateMachineTask::run(void* param) {
               calibration_data_.imu2.accel.x / CALIBRATION_SAMPLES,
               calibration_data_.imu2.accel.y / CALIBRATION_SAMPLES,
               calibration_data_.imu2.accel.z / CALIBRATION_SAMPLES);
+          calibration_data_ = {0};
+          calibration_sample_counter_ = 0;
           state_ = State::kIdle;
         }
 
-        if (imu_data_history_.size() == IMU_DATA_HISTORY_LEN) {
-          inversion_measuring_.calibrate(imu_data_history_[0].imu1.accel.x,
-                                         imu_data_history_[0].imu1.accel.y,
-                                         imu_data_history_[0].imu1.accel.z,
-                                         imu_data_history_[0].imu2.accel.x,
-                                         imu_data_history_[0].imu2.accel.y,
-                                         imu_data_history_[0].imu2.accel.z);
-          state_ = State::kIdle;
-        }
+        // if (imu_data_history_.size() == IMU_DATA_HISTORY_LEN) {
+        //   inversion_measuring_.calibrate(imu_data_history_[0].imu1.accel.x,
+        //                                  imu_data_history_[0].imu1.accel.y,
+        //                                  imu_data_history_[0].imu1.accel.z,
+        //                                  imu_data_history_[0].imu2.accel.x,
+        //                                  imu_data_history_[0].imu2.accel.y,
+        //                                  imu_data_history_[0].imu2.accel.z);
+        //   state_ = State::kIdle;
+        // }
         break;
       case State::kIdle:
         if (filtered_imu_1_accel_variance_ > IDLE_ACCEL_VARIANCE_THRESHOLD &&
@@ -105,11 +110,14 @@ void StateMachineTask::run(void* param) {
         if (actuated_counter_ >
             ACTUATED_STATE_TIMEOUT_MS) {  // 1 kHz loop -> 1ms/loop
           trigger_.deactivate();
+          actuated_counter_ = 0;
           state_ = State::kActive;
         }
         break;
     }
     set_status_led(state_);
+
+    // printf("state: %d, inversion speed: %f, imu1_variance: %f, imu2_variance: %f\n", (int)state_, filtered_inversion_speed_, filtered_imu_1_accel_variance_, filtered_imu_2_accel_variance_);
 
     vTaskDelay(1 / portTICK_PERIOD_MS);  // run at 1 kHz
   }
