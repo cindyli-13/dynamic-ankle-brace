@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ema_filter.h"
 #include "esp_adc/adc_oneshot.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
@@ -22,7 +23,7 @@ class BatteryMonitorTask : public Task {
         red_led_(PIN_NUM_RED_LED, true),
         adc_(nullptr),
         adc_cali_(nullptr),
-        vbatt_mV_(0.0f) {}
+        vbatt_mV_(VBATT_EMA_FILTER_ALPHA) {}
 
  private:
   static constexpr gpio_num_t PIN_NUM_GREEN_LED = GPIO_NUM_5;
@@ -47,7 +48,7 @@ class BatteryMonitorTask : public Task {
   adc_oneshot_unit_handle_t adc_;
   adc_cali_handle_t adc_cali_;
 
-  float vbatt_mV_;
+  EMAFilter vbatt_mV_;
 
   void update_state();
 

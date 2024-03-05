@@ -36,9 +36,7 @@ void BatteryMonitorTask::run(void* param) {
 
     // Need to convert from vbatt_monitor to vbatt due to voltage divider circuit
     // Also apply exponential moving average filter to vbatt measurement
-    vbatt_mV_ = (VBATT_EMA_FILTER_ALPHA * vbatt_mV_) +
-                (vbatt_monitor_mV * VBATT_MONITOR_TO_VBATT *
-                 (1 - VBATT_EMA_FILTER_ALPHA));
+    vbatt_mV_.update(vbatt_monitor_mV * VBATT_MONITOR_TO_VBATT);
 
     update_state();
 
@@ -51,13 +49,13 @@ void BatteryMonitorTask::run(void* param) {
 }
 
 void BatteryMonitorTask::update_state() {
-  if (vbatt_mV_ > BATTERY_GOOD_THRESHOLD_MV) {
+  if (vbatt_mV_.get() > BATTERY_GOOD_THRESHOLD_MV) {
     if (state_ != BatteryState::Good) {
       state_ = BatteryState::Good;
       green_led_.activate();
       red_led_.deactivate();
     }
-  } else if (vbatt_mV_ > BATTERY_LOW_THRESHOLD_MV) {
+  } else if (vbatt_mV_.get() > BATTERY_LOW_THRESHOLD_MV) {
     if (state_ != BatteryState::Low) {
       state_ = BatteryState::Low;
       green_led_.deactivate();
