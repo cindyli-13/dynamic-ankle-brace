@@ -30,8 +30,8 @@ class StateMachineTask : public Task {
   static constexpr size_t IMU_DATA_HISTORY_LEN = 5;
   static constexpr float IDLE_ACCEL_VARIANCE_THRESHOLD = 1.2;
   static constexpr int IDLE_STATE_TRANSITION_TIME_MS = 1000;
-  static constexpr float ACTIVE_INVERSION_SPEED_THRESHOLD_DEG_S = 400;
-  static constexpr int ACTUATED_STATE_TIMEOUT_MS = 250;
+  static constexpr float ACTIVE_INVERSION_SPEED_THRESHOLD_DEG_S = 300;
+  static constexpr int ACTUATED_STATE_TIMEOUT_MS = 2500;
   static constexpr float INVERSION_SPEED_FILTER_ALPHA = 0.3;
   static constexpr float ACCEL_VARIANCE_FILTER_ALPHA = 0.95;
   static constexpr size_t CALIBRATION_SAMPLES = 3000;
