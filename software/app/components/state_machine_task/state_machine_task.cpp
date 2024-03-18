@@ -2,9 +2,6 @@
 
 void StateMachineTask::init() {
   state_ = State::kCalibrating;
-  filtered_inversion_speed_ = 0;
-  filtered_imu_1_accel_variance_ = 0;
-  filtered_imu_2_accel_variance_ = 0;
   idle_counter_ = 0;
   actuated_counter_ = 0;
   calibration_sample_counter_ = 0;
@@ -34,22 +31,16 @@ void StateMachineTask::run(void* param) {
         calibration_data_.imu2.accel.z += imu_data.imu2.accel.z;
         calibration_sample_counter_++;
       } else {
-        filtered_inversion_speed_ =
-            inversion_measuring_.get_inversion_speed(imu_data) *
-                (1 - INVERSION_SPEED_FILTER_ALPHA) +
-            filtered_inversion_speed_ * INVERSION_SPEED_FILTER_ALPHA;
-        filtered_imu_1_accel_variance_ =
-            (imu_data.imu1.accel.x * imu_data.imu1.accel.x +
-             imu_data.imu1.accel.y * imu_data.imu1.accel.y +
-             imu_data.imu1.accel.z * imu_data.imu1.accel.z) *
-                (1 - ACCEL_VARIANCE_FILTER_ALPHA) +
-            filtered_imu_1_accel_variance_ * ACCEL_VARIANCE_FILTER_ALPHA;
-        filtered_imu_2_accel_variance_ =
-            (imu_data.imu2.accel.x * imu_data.imu2.accel.x +
-             imu_data.imu2.accel.y * imu_data.imu2.accel.y +
-             imu_data.imu2.accel.z * imu_data.imu2.accel.z) *
-                (1 - ACCEL_VARIANCE_FILTER_ALPHA) +
-            filtered_imu_2_accel_variance_ * ACCEL_VARIANCE_FILTER_ALPHA;
+        inversion_speed_filter_.update(
+            inversion_measuring_.get_inversion_speed(imu_data));
+        imu_1_accel_variance_filter_.update(
+            imu_data.imu1.accel.x * imu_data.imu1.accel.x +
+            imu_data.imu1.accel.y * imu_data.imu1.accel.y +
+            imu_data.imu1.accel.z * imu_data.imu1.accel.z);
+        imu_2_accel_variance_filter_.update(
+            imu_data.imu2.accel.x * imu_data.imu2.accel.x +
+            imu_data.imu2.accel.y * imu_data.imu2.accel.y +
+            imu_data.imu2.accel.z * imu_data.imu2.accel.z);
       }
     }
 
@@ -70,20 +61,22 @@ void StateMachineTask::run(void* param) {
         }
         break;
       case State::kIdle:
-        if (filtered_imu_1_accel_variance_ > IDLE_ACCEL_VARIANCE_THRESHOLD &&
-            filtered_imu_2_accel_variance_ > IDLE_ACCEL_VARIANCE_THRESHOLD) {
+        if (imu_1_accel_variance_filter_.get() >
+                IDLE_ACCEL_VARIANCE_THRESHOLD &&
+            imu_2_accel_variance_filter_.get() >
+                IDLE_ACCEL_VARIANCE_THRESHOLD) {
           idle_counter_ = 0;
           state_ = State::kActive;
         }
         break;
       case State::kActive:
-        if (filtered_inversion_speed_ >
+        if (inversion_speed_filter_.get() >
             ACTIVE_INVERSION_SPEED_THRESHOLD_DEG_S) {
           trigger_.activate();
           state_ = State::kActuated;
-        } else if (filtered_imu_1_accel_variance_ <
+        } else if (imu_1_accel_variance_filter_.get() <
                        IDLE_ACCEL_VARIANCE_THRESHOLD &&
-                   filtered_imu_2_accel_variance_ <
+                   imu_2_accel_variance_filter_.get() <
                        IDLE_ACCEL_VARIANCE_THRESHOLD) {
           idle_counter_++;
           if (idle_counter_ >

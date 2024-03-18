@@ -79,8 +79,8 @@ void IMUReadTask::init() {
                                   .accel_dlpf = ICM20948::AccelDLPF::_246HZ,
                                   .gyro_dlpf = ICM20948::GyroDLPF::_196_6HZ};
 
-  ESP_ERROR_CHECK(imu1_.init(imu1_config));
   ESP_ERROR_CHECK(imu2_.init(imu2_config));
+  ESP_ERROR_CHECK(imu1_.init(imu1_config));
 }
 
 void IMUReadTask::run(void* param) {

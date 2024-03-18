@@ -27,7 +27,7 @@ float InversionMeasuring::get_inversion_speed(
   Eigen::Vector3f relative_angular_vel =
       Rot_ * imu2_gyro_scaled - imu1_gyro_scaled;
 
-  // TODO: assume y axis of IMU 1 aligns with inversion axis
+  // TODO: assume x axis of IMU 1 aligns with inversion axis
   // Verify this on actual setup
   return relative_angular_vel(0);
 }
