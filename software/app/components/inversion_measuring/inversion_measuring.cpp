@@ -29,7 +29,7 @@ float InversionMeasuring::get_inversion_speed(
 
   // TODO: assume y axis of IMU 1 aligns with inversion axis
   // Verify this on actual setup
-  return relative_angular_vel(1);
+  return relative_angular_vel(0);
 }
 
 float InversionMeasuring::get_inversion_speed(shared::IMUData& imu_data) {
