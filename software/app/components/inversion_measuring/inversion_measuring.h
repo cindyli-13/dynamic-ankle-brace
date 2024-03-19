@@ -1,6 +1,7 @@
 #pragma once
 
 #include <eigen3/Eigen/Eigen>
+#include "shared.h"
 
 class InversionMeasuring {
  public:
@@ -16,6 +17,9 @@ class InversionMeasuring {
   float get_inversion_speed(float imu1_gyro_x, float imu1_gyro_y,
                             float imu1_gyro_z, float imu2_gyro_x,
                             float imu2_gyro_y, float imu2_gyro_z);
+
+  // convenience overload
+  float get_inversion_speed(shared::IMUData& imu_data);
 
  private:
   Eigen::Matrix3f Rot_;
