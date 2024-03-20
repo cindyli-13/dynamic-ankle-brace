@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=VBATT_MONITOR Pin=U3-4
+Added Pin To Net: NetName=VBATT_MONITOR Pin=U3-27

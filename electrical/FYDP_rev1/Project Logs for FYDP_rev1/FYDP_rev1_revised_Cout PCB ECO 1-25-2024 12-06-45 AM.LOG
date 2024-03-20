@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=SOLENOID_TRIG Pin=U3-7
+Added Pin To Net: NetName=SOLENOID_TRIG Pin=U3-26

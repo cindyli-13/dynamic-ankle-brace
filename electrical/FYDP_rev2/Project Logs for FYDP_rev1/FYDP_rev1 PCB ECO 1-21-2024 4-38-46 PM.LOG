@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=SPI_IMU2_nCS Pin=J2-2
+Removed Pin From Net: NetName=SPI_IMU_MISO Pin=J2-3
+Removed Pin From Net: NetName=SPI_IMU_CLK Pin=J2-4
+Removed Pin From Net: NetName=SPI_IMU_MOSI Pin=J2-5
+Removed Pin From Net: NetName=SPI_IMU1_nCS Pin=J2-6
+Removed Pin From Net: NetName=GND Pin=J2-7
+Removed Pin From Net: NetName=IMU1_INT Pin=J2-8
+Removed Pin From Net: NetName=IMU2_INT Pin=J2-9
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=IMU1_INT Pin=J2-3
+Added Pin To Net: NetName=SPI_IMU1_nCS Pin=J2-4
+Added Pin To Net: NetName=IMU2_INT Pin=J2-5
+Added Pin To Net: NetName=SPI_IMU_MOSI Pin=J2-6
+Added Pin To Net: NetName=SPI_IMU_CLK Pin=J2-7
+Added Pin To Net: NetName=SPI_IMU_MISO Pin=J2-8
+Added Pin To Net: NetName=SPI_IMU2_nCS Pin=J2-9

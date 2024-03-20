@@ -1,0 +1,30 @@
+Comment,Designator,Footprint,JLCPCB Part #
+25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,"C1, C2, C7, C20, C22",0805,C15850
+10V 47uF X5R ±20% 1206  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,"C3, C12",1206,C96123
+50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,"C4, C6, C9, C10, C11, C14, C15, C16, C18, C19, C21, C23",0402,C307331
+50V 47pF C0G ±5% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C5,0402,C1567
+50V 1nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C8,0402,C1523
+50V 22nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C13,0402,C1532
+Emerald 0805  Light Emitting Diodes (LED) ROHS,"D3, D14",,C2297
+Colorless transparence 67mcd~195mcd -30?~+85? 615nm~630nm Red 130° 65mW 0805  Light Emitting Diodes (LED) ROHS,D4,,C84256
+Yellow 0805  Light Emitting Diodes (LED) ROHS,"D5, D6, D7, D13",,C2296
+40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS,"D8, D9, D10, D11, D12",,C7502699
+50A SMD Fuse 1A 32V 32V 0603  Fuses ROHS,"F1, F2",0603,C151139
+3.3uH ±20% 3A SMD Power Inductors ROHS,"L1, L2",,C5334322
+MOSFET P-CH 30V 4.1A SOT23,"Q1, Q4, Q5",,C669006
+62.5mW Thick Film Resistors ±100ppm/? ±1% 1MO 0402  Chip Resistor - Surface Mount ROHS,R1,0402,C26083
+100mW Thick Film Resistors ±100ppm/? ±1% 330kO 0603  Chip Resistor - Surface Mount ROHS,"R2, R5",0603,C23137
+100mW Thick Film Resistors ±100ppm/? ±1% 24kO 0603  Chip Resistor - Surface Mount ROHS,R3,0603,C23352
+62.5mW Thick Film Resistors ±100ppm/? ±1% 100kO 0402  Chip Resistor - Surface Mount ROHS,R4,0402,C25741
+62.5mW Thick Film Resistors ±100ppm/? ±1% 15kO 0402  Chip Resistor - Surface Mount ROHS,R6,0402,C25756
+62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS,"R7, R8, R12, R13, R14, R23, R25, R27, R31",0402,C25744
+100mW Thick Film Resistors ±1% 0O 0603  Chip Resistor - Surface Mount ROHS,R9,0603,C21189
+62.5mW Thick Film Resistors ±100ppm/? ±1% 33kO 0402  Chip Resistor - Surface Mount ROHS,"R10, R15",0402,C25779
+62.5mW Thick Film Resistors ±100ppm/? ±1% 51kO 0402  Chip Resistor - Surface Mount ROHS,"R11, R21",0402,C25794
+62.5mW Thick Film Resistors ±100ppm/? ±1% 330O 0402  Chip Resistor - Surface Mount ROHS,"R16, R20, R28",0402,C25104
+62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS,"R17, R18, R22, R24, R29",0402,C25123
+62.5mW Thick Film Resistors ±100ppm/? ±1% 2.2kO 0402  Chip Resistor - Surface Mount ROHS,"R19, R30",0402,C25879
+62.5mW Thick Film Resistors ±1% ±200ppm/? 100O 0402  Chip Resistor - Surface Mount ROHS,R26,0402,C25076
+IC REG BOOST ADJ 7A 11VQFN,U1,11VQFN,C165129
+IC REG BUCK ADJ 3A SOT-23-8,U2,SOT-23-8,C882795
+IC LI-ION/LI-POLY CTRLR SOT23-5,U4,,C38066

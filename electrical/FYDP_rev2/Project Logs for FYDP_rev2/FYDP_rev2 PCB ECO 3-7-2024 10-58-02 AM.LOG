@@ -1,0 +1,10 @@
+Added Component: Designator=R31(RES0402)
+Add component (AddParameter): Name = "Manufacturer"; Value = "UNI-ROYAL(Uniroyal Elec)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "0402WGF1002TCE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power Rating"; Value = "62.5mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Resistance"; Value = "10kR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetQ5_1 Pin=R31-1
+Added Pin To Net: NetName=NetC22_2 Pin=R31-2
+Added Member To Class: ClassName=Power Member=Component R31 0402WGF1002TCE

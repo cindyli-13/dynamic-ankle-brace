@@ -1,0 +1,80 @@
+Removed Pin From Net: NetName=BOOST_EN Pin=U1-7
+Removed Pin From Net: NetName=BUCK_EN Pin=U2-7
+Change component parameters: Designator = "D8" ("D8"); Footprint = "TUMD2M"; UniqueID = "\BATBLYZA" ("\BATBLYZA")
+Change component parameters (AddParameter): Name = "Io"; Value = "1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Rohm Semiconductor"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "RB161VAM-20TR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package/Footprint"; Value = "TUMD2M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "RB161VAM-20CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vf (Max)"; Value = "420mV @ 1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vr (Max)"; Value = "20V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D9" ("D9"); Footprint = "TUMD2M"; UniqueID = "\YNWHUCCH" ("\YNWHUCCH")
+Change component parameters (AddParameter): Name = "Io"; Value = "1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Rohm Semiconductor"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "RB161VAM-20TR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package/Footprint"; Value = "TUMD2M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "RB161VAM-20CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vf (Max)"; Value = "420mV @ 1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vr (Max)"; Value = "20V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D10" ("D10"); Footprint = "TUMD2M"; UniqueID = "\SVEQHCNO" ("\SVEQHCNO")
+Change component parameters (AddParameter): Name = "Io"; Value = "1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Rohm Semiconductor"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "RB161VAM-20TR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package/Footprint"; Value = "TUMD2M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "RB161VAM-20CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vf (Max)"; Value = "420mV @ 1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vr (Max)"; Value = "20V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D11" ("D11"); Footprint = "TUMD2M"; UniqueID = "\DEQQFKIM" ("\DEQQFKIM")
+Change component parameters (AddParameter): Name = "Io"; Value = "1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Rohm Semiconductor"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "RB161VAM-20TR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package/Footprint"; Value = "TUMD2M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "RB161VAM-20CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vf (Max)"; Value = "420mV @ 1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vr (Max)"; Value = "20V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D12" ("D12"); Footprint = "TUMD2M"; UniqueID = "\GURODWBG" ("\GURODWBG")
+Change component parameters (AddParameter): Name = "Io"; Value = "1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Rohm Semiconductor"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "RB161VAM-20TR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package/Footprint"; Value = "TUMD2M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "RB161VAM-20CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vf (Max)"; Value = "420mV @ 1A"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Vr (Max)"; Value = "20V"; VariantName = "[No Variations]"
+Change component parameters: Designator = "U3" ("U3"); Footprint = "EPS32-S3-DevKitC"; UniqueID = "\GXIDZQZB" ("\GXIDZQZB")
+Change component parameters (AddParameter): Name = "Dev Kit Part Number"; Value = "ESP32-S3-DevKitC-1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MCU Part Number"; Value = "ESP32-S3-WROOM-2-N32R8V"; VariantName = "[No Variations]"
+Added Component: Designator=D13(LED_0805_YELLOW)
+Add component (AddParameter): Name = "If rated"; Value = "20mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Hubei KENTO Elec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "KT-0805Y"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf"; Value = "2.1V"; VariantName = "[No Variations]"
+Added Component: Designator=R28(RES0402)
+Add component (AddParameter): Name = "Manufacturer"; Value = "UNI-ROYAL(Uniroyal Elec)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "0402WGF3300TCE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0402"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power Rating"; Value = "62.5mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Resistance"; Value = "330R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=D13-1
+Change Net Name : Old Net Name=PUMP_TRIGGER New Net Name=NetD9_2
+Change Net Name : Old Net Name=SPI_IMU1_CS New Net Name=SPI_IMU1_nCS
+Change Net Name : Old Net Name=SPI_IMU2_CS New Net Name=SPI_IMU2_nCS
+Added Pin To Net: NetName=NetD13_2 Pin=D13-2
+Added Pin To Net: NetName=NetD13_2 Pin=R28-1
+Added Net: Name=NetD13_2
+Added Pin To Net: NetName=SOLENOID_TRIG Pin=R26-1
+Added Pin To Net: NetName=SOLENOID_TRIG Pin=R28-2
+Added Pin To Net: NetName=SOLENOID_TRIG Pin=U3-7
+Added Net: Name=SOLENOID_TRIG
+Added Member To Class: ClassName=MCU Member=Component D13 KT-0805Y
+Added Member To Class: ClassName=MCU Member=Component R28 0402WGF3300TCE

@@ -1,0 +1,88 @@
+Altium Designer Pick and Place Locations,,,,,,,
+C:\Users\kyleh\FYDP\FYDP_rev2\Project Outputs for Free Documents\Pick Place\Pick Place for FYDP_rev2.csv,,,,,,,
+,,,,,,,
+========================================================================================================================,,,,,,,
+File Design Information:,,,,,,,
+,,,,,,,
+Date:       10/03/24,,,,,,,
+Time:       18:45,,,,,,,
+Revision:   Not in VersionControl,,,,,,,
+Variant:    No variations,,,,,,,
+Units used: mm,,,,,,,
+,,,,,,,
+Designator,Comment,Layer,Footprint,Center-X(mm),Center-Y(mm),Rotation,Description
+C23,CL05B104KB54PNC,TopLayer,CAP0402,74.5861mm,137.9220mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+R31,0402WGF1002TCE,TopLayer,RES0402,59.4460mm,82.0398mm,270,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R25,0402WGF1002TCE,TopLayer,RES0402,76.5250mm,136.0828mm,270,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+U4,MCP73832T-2ACI/OT,TopLayer,FP-C04-091-OT-MFG,57.4500mm,78.6250mm,180,IC LI-ION/LI-POLY CTRLR SOT23-5
+R30,0402WGF2201TCE,TopLayer,RES0402,54.5000mm,77.0672mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 2.2kO 0402  Chip Resistor - Surface Mount ROHS
+R29,0402WGF5100TCE,TopLayer,RES0402,53.4000mm,79.1422mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS
+Q5,SI3407-TP,TopLayer,SOT23-3,62.4460mm,82.5070mm,0,MOSFET P-CH 30V 4.1A SOT23
+Q4,SI3407-TP,TopLayer,SOT23-3,74.0750mm,135.6000mm,90,MOSFET P-CH 30V 4.1A SOT23
+D14,KT-0805G,TopLayer,LED_0805_GREEN,57.8750mm,75.3750mm,0,Emerald 0805  Light Emitting Diodes (LED) ROHS
+C22,CL21A106KAYNNNE,TopLayer,CAP0805,61.2750mm,78.6500mm,90,25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C21,CL05B104KB54PNC,TopLayer,CAP0402,54.5000mm,79.0299mm,90,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C20,CL21A106KAYNNNE,TopLayer,CAP0805,58.2250mm,119.3250mm,0,25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+D12,RB551V-40,TopLayer,SOD-323,76.5000mm,120.9550mm,90,40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS
+D11,RB551V-40,TopLayer,SOD-323,85.0506mm,112.7056mm,0,40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS
+D10,RB551V-40,TopLayer,SOD-323,68.0764mm,115.0750mm,180,40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS
+D9,RB551V-40,TopLayer,SOD-323,68.0450mm,112.7750mm,0,40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS
+D8,RB551V-40,TopLayer,SOD-323,79.2150mm,112.6750mm,180,40V 470mV@500mA 0.5A SOD-323  Schottky Barrier Diodes (SBD) ROHS
+C19,CL05B104KB54PNC,TopLayer,CAP0402,52.5250mm,130.2049mm,90,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+R5,0603WAF3303T5E,TopLayer,RES0603,76.0003mm,130.1249mm,90,100mW Thick Film Resistors ±100ppm/? ±1% 330kO 0603  Chip Resistor - Surface Mount ROHS
+R28,0402WGF3300TCE,TopLayer,RES0402,45.7250mm,105.1172mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 330O 0402  Chip Resistor - Surface Mount ROHS
+D13,KT-0805Y,TopLayer,LED_0805_YELLOW,45.6750mm,99.4500mm,270,Yellow 0805  Light Emitting Diodes (LED) ROHS
+U2,TPS563210ADDFR,TopLayer,TPS563210ADDFR,59.7500mm,115.2750mm,270,IC REG BUCK ADJ 3A SOT-23-8
+U1,TPS61089RNRR,TopLayer,TPS61089RNRR,65.150mm,129.4000mm,0,IC REG BOOST ADJ 7A 11VQFN
+R27,0402WGF1002TCE,TopLayer,RES0402,76.5672mm,126.0000mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R26,0402WGF1000TCE,TopLayer,RES0402,76.5422mm,126.9750mm,0,62.5mW Thick Film Resistors ±1% ±200ppm/? 100O 0402  Chip Resistor - Surface Mount ROHS
+R24,0402WGF5100TCE,TopLayer,RES0402,63.0172mm,107.1750mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS
+R23,0402WGF1002TCE,TopLayer,RES0402,85.7172mm,114.5000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R22,0402WGF5100TCE,TopLayer,RES0402,67.4500mm,107.6078mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS
+R21,0402WGF5102TCE,TopLayer,RES0402,67.0172mm,106.1000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 51kO 0402  Chip Resistor - Surface Mount ROHS
+R20,0402WGF3300TCE,TopLayer,RES0402,49.1078mm,133.5250mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 330O 0402  Chip Resistor - Surface Mount ROHS
+R19,0402WGF2201TCE,TopLayer,RES0402,57.6078mm,134.8000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 2.2kO 0402  Chip Resistor - Surface Mount ROHS
+R18,0402WGF5100TCE,TopLayer,RES0402,80.6672mm,127.8000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS
+R17,0402WGF5100TCE,TopLayer,RES0402,52.7500mm,116.0672mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 510O 0402  Chip Resistor - Surface Mount ROHS
+R16,0402WGF3300TCE,TopLayer,RES0402,52.7500mm,118.3172mm,90,62.5mW Thick Film Resistors ±100ppm/? ±1% 330O 0402  Chip Resistor - Surface Mount ROHS
+R15,0402WGF3302TCE,TopLayer,RES0402,68.2500mm,118.1828mm,270,62.5mW Thick Film Resistors ±100ppm/? ±1% 33kO 0402  Chip Resistor - Surface Mount ROHS
+R14,0402WGF1002TCE,TopLayer,RES0402,68.2500mm,120.5672mm,270,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R13,0402WGF1002TCE,TopLayer,RES0402,60.6078mm,110.4250mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R12,0402WGF1002TCE,TopLayer,RES0402,58.7922mm,111.5500mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R11,0402WGF5102TCE,TopLayer,RES0402,60.5922mm,111.5750mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 51kO 0402  Chip Resistor - Surface Mount ROHS
+R10,0402WGF3302TCE,TopLayer,RES0402,58.8422mm,112.6500mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 33kO 0402  Chip Resistor - Surface Mount ROHS
+R9,0603WAF0000T5E,TopLayer,RES0603,54.2000mm,130.2000mm,90,100mW Thick Film Resistors ±1% 0O 0603  Chip Resistor - Surface Mount ROHS
+R8,0402WGF1002TCE,TopLayer,RES0402,68.9328mm,126.4000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R7,0402WGF1002TCE,TopLayer,RES0402,60.4672mm,129.1000mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 10kO 0402  Chip Resistor - Surface Mount ROHS
+R6,0402WGF1502TCE,TopLayer,RES0402,68.8672mm,124.0000mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 15kO 0402  Chip Resistor - Surface Mount ROHS
+R4,0402WGF1003TCE,TopLayer,RES0402,62.2328mm,129.1000mm,0,62.5mW Thick Film Resistors ±100ppm/? ±1% 100kO 0402  Chip Resistor - Surface Mount ROHS
+R3,0603WAF2402T5E,TopLayer,RES0603,60.7999mm,126.6998mm,0,100mW Thick Film Resistors ±100ppm/? ±1% 24kO 0603  Chip Resistor - Surface Mount ROHS
+R2,0603WAF3303T5E,TopLayer,RES0603,61.1000mm,135.0000mm,90,100mW Thick Film Resistors ±100ppm/? ±1% 330kO 0603  Chip Resistor - Surface Mount ROHS
+R1,0402WGF1004TCE,TopLayer,RES0402,61.3328mm,130.0000mm,180,62.5mW Thick Film Resistors ±100ppm/? ±1% 1MO 0402  Chip Resistor - Surface Mount ROHS
+Q1,SI3407-TP,TopLayer,SOT23-3,66.5500mm,102.3500mm,270,MOSFET P-CH 30V 4.1A SOT23
+L2,IHLP1616BZER3R3M5A,TopLayer,TMPA0503S-3R3MN-D,54.7000mm,123.4750mm,90,3.3uH ±20% 3A SMD Power Inductors ROHS
+L1,IHLP1616BZER3R3M5A,TopLayer,TMPA0503S-3R3MN-D,65.5000mm,135.3000mm,180,3.3uH ±20% 3A SMD Power Inductors ROHS
+F2,0467001.NRHF,TopLayer,FUSE_0603,77.4000mm,116.9000mm,0,50A SMD Fuse 1A 32V 32V 0603  Fuses ROHS
+F1,0467001.NRHF,TopLayer,FUSE_0603,68.4000mm,96.0250mm,180,50A SMD Fuse 1A 32V 32V 0603  Fuses ROHS
+D7,KT-0805Y,TopLayer,LED_0805_YELLOW,48.5000mm,135.2000mm,180,Yellow 0805  Light Emitting Diodes (LED) ROHS
+D6,KT-0805Y,TopLayer,LED_0805_YELLOW,57.0000mm,136.7500mm,180,Yellow 0805  Light Emitting Diodes (LED) ROHS
+D5,KT-0805Y,TopLayer,LED_0805_YELLOW,85.3250mm,127.8000mm,0,Yellow 0805  Light Emitting Diodes (LED) ROHS
+D4,NCD0805R1,TopLayer,LED_0805_RED,45.7500mm,111.4500mm,270,Colorless transparence 67mcd~195mcd -30?~+85? 615nm~630nm Red 130° 65mW 0805  Light Emitting Diodes (LED) ROHS
+D3,KT-0805G,TopLayer,LED_0805_GREEN,45.7500mm,118.5000mm,270,Emerald 0805  Light Emitting Diodes (LED) ROHS
+C18,CL05B104KB54PNC,TopLayer,CAP0402,62.9049mm,104.6250mm,0,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C16,CL05B104KB54PNC,TopLayer,CAP0402,66.9299mm,105.0250mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C15,CL05B104KB54PNC,TopLayer,CAP0402,69.5500mm,119.1701mm,270,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C14,CL05B104KB54PNC,TopLayer,CAP0402,60.6701mm,112.6250mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C13,0402B223K500NT,TopLayer,CAP0402,56.8049mm,113.7500mm,0,50V 22nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C12,CL31A476MPHNNNE,TopLayer,CAP1206,58.7000mm,123.1750mm,90,10V 47uF X5R ±20% 1206  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C11,CL05B104KB54PNC,TopLayer,CAP0402,58.7751mm,117.8500mm,0,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C10,CL05B104KB54PNC,TopLayer,CAP0402,61.9000mm,114.5201mm,270,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C9,CL05B104KB54PNC,TopLayer,CAP0402,68.7049mm,127.8500mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C8,0402B102K500NT,TopLayer,CAP0402,60.5000mm,124.6451mm,90,50V 1nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C7,CL21A106KAYNNNE,TopLayer,CAP0805,60.5000mm,131.9250mm,0,25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C6,CL05B104KB54PNC,TopLayer,CAP0402,65.4451mm,131.5500mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C5,0402CG470J500NT,TopLayer,CAP0402,61.7220mm,124.6549mm,90,50V 47pF C0G ±5% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C4,CL05B104KB54PNC,TopLayer,CAP0402,68.3549mm,129.7000mm,180,50V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C3,CL31A476MPHNNNE,TopLayer,CAP1206,70.0000mm,135.3000mm,90,10V 47uF X5R ±20% 1206  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C2,CL21A106KAYNNNE,TopLayer,CAP0805,64.5500mm,126.8000mm,0,25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+C1,CL21A106KAYNNNE,TopLayer,CAP0805,64.5500mm,124.8000mm,0,25V 10uF X5R ±10% 0805  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS

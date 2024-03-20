@@ -1,0 +1,14 @@
+Project Outputs Generation Report
+---------------------------------
+Start Output Generation At 9:54:42 PM On 1/25/2024
+
+Output: Generates pick and place files
+Type  : Pick Place
+From  : PCB Document [FYDP_rev1_revised_Cout.PcbDoc]
+   Generated File[Pick Place for FYDP_rev1_revised_Cout.csv]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 9:54:43 PM On 1/25/2024

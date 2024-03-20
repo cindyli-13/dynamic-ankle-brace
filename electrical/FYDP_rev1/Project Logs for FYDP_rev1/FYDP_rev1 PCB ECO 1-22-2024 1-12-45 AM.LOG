@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=IMU2_INT Pin=J2-5
+Removed Pin From Net: NetName=SPI_IMU1_nCS Pin=J2-6
+Removed Pin From Net: NetName=IMU1_INT Pin=J2-7
+Added Pin To Net: NetName=SPI_IMU1_nCS Pin=J2-5
+Added Pin To Net: NetName=IMU1_INT Pin=J2-6
+Added Pin To Net: NetName=IMU2_INT Pin=J2-7

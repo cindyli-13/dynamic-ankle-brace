@@ -1,0 +1,55 @@
+Added Component: Designator=D8(SOD-323)
+Add component (AddParameter): Name = "Io"; Value = "0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "RB551V-40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package/Footprint"; Value = "SOD-323"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf (Max)"; Value = "470mV @ 0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vr (Max)"; Value = "40V"; VariantName = "[No Variations]"
+Added Component: Designator=D9(SOD-323)
+Add component (AddParameter): Name = "Io"; Value = "0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "RB551V-40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package/Footprint"; Value = "SOD-323"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf (Max)"; Value = "470mV @ 0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vr (Max)"; Value = "40V"; VariantName = "[No Variations]"
+Added Component: Designator=D10(SOD-323)
+Add component (AddParameter): Name = "Io"; Value = "0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "RB551V-40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package/Footprint"; Value = "SOD-323"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf (Max)"; Value = "470mV @ 0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vr (Max)"; Value = "40V"; VariantName = "[No Variations]"
+Added Component: Designator=D11(SOD-323)
+Add component (AddParameter): Name = "Io"; Value = "0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "RB551V-40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package/Footprint"; Value = "SOD-323"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf (Max)"; Value = "470mV @ 0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vr (Max)"; Value = "40V"; VariantName = "[No Variations]"
+Added Component: Designator=D12(SOD-323)
+Add component (AddParameter): Name = "Io"; Value = "0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "RB551V-40"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package/Footprint"; Value = "SOD-323"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vf (Max)"; Value = "470mV @ 0.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vr (Max)"; Value = "40V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetD8_1 Pin=D8-1
+Added Pin To Net: NetName=PP12V Pin=D8-2
+Added Pin To Net: NetName=NetC16_1 Pin=D9-1
+Added Pin To Net: NetName=NetD9_2 Pin=D9-2
+Added Pin To Net: NetName=NetD9_2 Pin=D10-1
+Added Pin To Net: NetName=NetC18_2 Pin=D10-2
+Added Pin To Net: NetName=NetD8_1 Pin=D11-1
+Added Pin To Net: NetName=NetC17_1 Pin=D11-2
+Added Pin To Net: NetName=NetD8_1 Pin=D12-1
+Added Pin To Net: NetName=NetD9_2 Pin=D12-2
+Added Member To Class: ClassName=Driver Member=Component D8 RB551V-40
+Added Member To Class: ClassName=Driver Member=Component D9 RB551V-40
+Added Member To Class: ClassName=Driver Member=Component D10 RB551V-40
+Added Member To Class: ClassName=Driver Member=Component D11 RB551V-40
+Added Member To Class: ClassName=Driver Member=Component D12 RB551V-40

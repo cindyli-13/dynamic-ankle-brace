@@ -1,0 +1,9 @@
+Change Component Comment : Designator=R29 Old Comment=0402WGF3300TCE New Comment=0402WGF5100TCE
+Change component parameters: Designator = "R29" ("R29"); Footprint = "RES0402"; UniqueID = "\CROAKMJG" ("\CROAKMJG")
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "UNI-ROYAL(Uniroyal Elec)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "0402WGF5100TCE"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0402"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Power Rating"; Value = "62.5mW"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Resistance"; Value = "510R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=NetJ4_1 New Net Name=NetC23_1
