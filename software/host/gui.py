@@ -21,7 +21,8 @@ VBATT_LOW_THRESHOLD = 3.2
 g_window = None
 g_app = None
 g_app_exit = False
-g_calibrate_requested = False
+g_calibration_requested_callback = None
+g_config_update_requested_callback = None
 g_new_config_params = None # tuple: (inversion_threshold_dps, actuated_timeout_s, idle_variance_threshold_g2, idle_transition_time_s)
 g_new_config_requested = False
 
@@ -298,10 +299,11 @@ class MainWindow(QMainWindow):
         self.idle_transition_time.setText('{:.2f} s'.format(idle_transition_time))
 
     def calibrate_button_pressed(self):
-        global g_calibrate_requested
-        g_calibrate_requested = True
+        global g_calibration_requested_callback
         self.calibrate_button.setStyleSheet(self.BUTTON_PRESSED_STYLESHEET)
-    
+        if g_calibration_requested_callback is not None:
+            g_calibration_requested_callback()
+
     def calibrate_button_released(self):
         self.calibrate_button.setStyleSheet(self.BUTTON_RELEASED_STYLESHEET)
 
@@ -310,14 +312,14 @@ class MainWindow(QMainWindow):
         if self.update_config_dialog.exec():
             inversion_threshold, actuated_timeout, idle_variance_threshold, idle_transition_time = self.update_config_dialog.get_new_config_params()
             try:
-                global g_new_config_params
-                global g_new_config_requested
                 inversion_threshold = float(inversion_threshold.strip())
                 actuated_timeout = float(actuated_timeout.strip())
                 idle_variance_threshold = float(idle_variance_threshold.strip())
                 idle_transition_time = float(idle_transition_time.strip())
-                g_new_config_params = (inversion_threshold, actuated_timeout, idle_variance_threshold, idle_transition_time)
-                g_new_config_requested = True
+
+                global g_config_update_requested_callback
+                if g_config_update_requested_callback is not None:
+                    g_config_update_requested_callback(inversion_threshold, actuated_timeout, idle_variance_threshold, idle_transition_time)
             except ValueError:
                 pass
         self.update_config_button_released()
@@ -372,20 +374,15 @@ def g_gui_exited():
     return g_app_exit
 
 
-def g_is_calibration_requested():
-    global g_calibrate_requested
-    return g_calibrate_requested
+# args: void
+# return: void
+def g_set_calibration_requested_callback(callback):
+    global g_calibration_requested_callback
+    g_calibration_requested_callback = callback
 
 
-def g_clear_calibration_request():
-    global g_calibrate_requested
-    g_calibrate_requested = False
-
-
-def g_maybe_get_new_config_params():
-    global g_new_config_params
-    global g_new_config_requested
-    if g_new_config_requested:
-        return g_new_config_params
-    else:
-        return None
+# args: float, float, float, float (inversion_threshold_dps, actuated_timeout_s, idle_variance_threshold_g2, idle_transition_time_s)
+# return: void
+def g_set_config_update_requested_callback(callback):
+    global g_config_update_requested_callback
+    g_config_update_requested_callback = callback
