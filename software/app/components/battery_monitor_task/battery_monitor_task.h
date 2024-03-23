@@ -5,8 +5,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "gpio.h"
-#include "task.h"
 #include "shared.h"
+#include "task.h"
 
 class BatteryMonitorTask : public Task {
  public:

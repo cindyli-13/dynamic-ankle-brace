@@ -23,12 +23,13 @@ class TelemetryTask : public Task {
       : Task(config, param) {}
 
  private:
-  static constexpr size_t rx_buffer_size_ = 256;
-  static constexpr size_t addr_buffer_size_ = 128;
+  static constexpr size_t tx_buffer_size_ = 256;
+  char tx_buffer_[tx_buffer_size_];
   int32_t telemetry_sock_;
   sockaddr_in dest_addr_;
 
   void init();
   void run(void* param);
+  const char* stateToString(shared::State);
   void init_telemetry_socket(const char* dest_address, uint16_t port);
 };
