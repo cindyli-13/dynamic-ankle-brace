@@ -25,6 +25,7 @@ void TelemetryTask::init_telemetry_socket(const char* dest_address,
 }
 
 void TelemetryTask::run(void* param) {
+  Param* task_param = static_cast<Param*>(param);
   const char* payload = "Hello, Laptop!";
   while (1) {
     int err = sendto(telemetry_sock_, payload, strlen(payload), 0,

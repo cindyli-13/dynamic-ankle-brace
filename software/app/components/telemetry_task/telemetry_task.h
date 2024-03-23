@@ -7,16 +7,20 @@
 #include "string.h"
 #include "task.h"
 
-
 #include "lwip/err.h"
 #include "lwip/sockets.h"
 #include "lwip/sys.h"
 
 class TelemetryTask : public Task {
  public:
+  struct Param {
+    DataBuffer<float, 10>* inversion_speed_buffer;
+    DataBuffer<shared::State, 1>* state_buffer;
+    DataBuffer<float, 1>* battery_voltage_buffer;
+  };
 
-  TelemetryTask(const Task::Config& config)
-      : Task(config, nullptr) {}
+  TelemetryTask(const Task::Config& config, Param* const param)
+      : Task(config, param) {}
 
  private:
   static constexpr size_t rx_buffer_size_ = 256;

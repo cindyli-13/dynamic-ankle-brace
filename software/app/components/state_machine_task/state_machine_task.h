@@ -12,17 +12,14 @@
 static constexpr float INVERSION_SPEED_FILTER_ALPHA = 0.3;
 static constexpr float ACCEL_VARIANCE_FILTER_ALPHA = 0.95;
 
-enum class State {
-  kIdle,
-  kActive,
-  kActuated,
-  kCalibrating,
-};
-
 class StateMachineTask : public Task {
  public:
   struct Param {
     shared::IMUDataBuffer* imu_data_buffer;
+    DataBuffer<float, 10>* inversion_speed_buffer;
+    DataBuffer<shared::State, 1>* state_buffer;
+    DataBuffer<bool, 1>* calibration_requested_buffer;
+    DataBuffer<shared::Config, 1>* config_params_buffer;
   };
 
   StateMachineTask(const Task::Config& config, Param* const param)
@@ -35,15 +32,15 @@ class StateMachineTask : public Task {
 
  private:
   static constexpr size_t IMU_DATA_HISTORY_LEN = 5;
-  static constexpr float IDLE_ACCEL_VARIANCE_THRESHOLD = 1.2;
-  static constexpr int IDLE_STATE_TRANSITION_TIME_MS = 60000;
-  static constexpr float ACTIVE_INVERSION_SPEED_THRESHOLD_DEG_S = 300;
-  static constexpr int ACTUATED_STATE_TIMEOUT_MS = 2500;
   static constexpr size_t CALIBRATION_SAMPLES = 3000;
   static constexpr gpio_num_t PIN_NUM_ACTUATOR = GPIO_NUM_1;
+  shared::Config config_ = {.inversion_threshold_deg_s = 300,
+                            .actuation_timeout_ms = 2500,
+                            .idle_variance_threshold = 1.2,
+                            .idle_transition_time_ms = 60000};
   Gpio trigger_;
   InversionMeasuring inversion_measuring_;
-  State state_;
+  shared::State state_;
   RgbLed rgb_led_;
   std::deque<shared::IMUData> imu_data_history_;
   EMAFilter inversion_speed_filter_;
@@ -56,5 +53,5 @@ class StateMachineTask : public Task {
 
   void init();
   void run(void* param);
-  void set_status_led(State state);
+  void set_status_led(shared::State state);
 };

@@ -7,16 +7,19 @@
 #include "string.h"
 #include "task.h"
 
-
 #include "lwip/err.h"
 #include "lwip/sockets.h"
 #include "lwip/sys.h"
 
 class ConfigManagerTask : public Task {
  public:
+  struct Param {
+    DataBuffer<bool, 1>* calibration_requested_buffer;
+    DataBuffer<shared::Config, 1>* config_params_buffer;
+  };
 
-  ConfigManagerTask(const Task::Config& config)
-      : Task(config, nullptr) {}
+  ConfigManagerTask(const Task::Config& config, Param* const param)
+      : Task(config, param) {}
 
  private:
   static constexpr uint16_t config_port_ = 4242;

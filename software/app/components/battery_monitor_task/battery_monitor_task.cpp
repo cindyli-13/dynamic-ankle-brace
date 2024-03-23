@@ -27,6 +27,8 @@ void BatteryMonitorTask::init() {
 }
 
 void BatteryMonitorTask::run(void* param) {
+  Param* task_param = static_cast<Param*>(param);
+
   int adc_raw_data;
   int vbatt_monitor_mV;
   while (true) {
@@ -37,6 +39,10 @@ void BatteryMonitorTask::run(void* param) {
     // Need to convert from vbatt_monitor to vbatt due to voltage divider circuit
     // Also apply exponential moving average filter to vbatt measurement
     vbatt_mV_.update(vbatt_monitor_mV * VBATT_MONITOR_TO_VBATT);
+
+    // update data for telemetry
+    float vbat = vbatt_mV_.get();
+    task_param->battery_voltage_buffer->send(vbat);
 
     update_state();
 

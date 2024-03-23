@@ -1,6 +1,5 @@
 #include "config_manager_task.h"
 
-
 void ConfigManagerTask::init() {
   int addr_family = AF_INET;
   int ip_protocol = IPPROTO_IP;
@@ -38,7 +37,7 @@ void ConfigManagerTask::init() {
 }
 
 void ConfigManagerTask::read_control_message(char rx_buffer[rx_buffer_size_],
-                                          char addr_str[addr_buffer_size_]) {
+                                             char addr_str[addr_buffer_size_]) {
   printf("Socket listening\n");
   struct sockaddr_storage source_addr;
   socklen_t addr_len = sizeof(source_addr);
@@ -74,6 +73,7 @@ void ConfigManagerTask::run(void* param) {
   char rx_buffer[256];
   char addr_str[128];
   while (true) {
+    Param* task_param = static_cast<Param*>(param);
     read_control_message(rx_buffer, addr_str);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
