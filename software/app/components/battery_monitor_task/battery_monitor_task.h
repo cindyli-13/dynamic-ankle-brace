@@ -5,6 +5,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "gpio.h"
+#include "shared.h"
 #include "task.h"
 
 class BatteryMonitorTask : public Task {
@@ -16,8 +17,12 @@ class BatteryMonitorTask : public Task {
     Unknown,
   };
 
-  BatteryMonitorTask(const Task::Config& config)
-      : Task(config, nullptr),
+  struct Param {
+    DataBuffer<float, 1>* battery_voltage_buffer;
+  };
+
+  BatteryMonitorTask(const Task::Config& config, Param* const param)
+      : Task(config, param),
         state_(BatteryState::Unknown),
         green_led_(PIN_NUM_GREEN_LED, true),
         red_led_(PIN_NUM_RED_LED, true),

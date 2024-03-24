@@ -26,6 +26,8 @@ class DataBuffer {
     return xQueueReceive(handle_, &data, 0) == pdTRUE;
   }
 
+  bool peek(T& data) { return xQueuePeek(handle_, &data, 0) == pdTRUE; }
+
  private:
   QueueHandle_t handle_;
   StaticQueue_t buffer_;

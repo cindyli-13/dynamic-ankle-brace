@@ -1,8 +1,8 @@
-import sys, signal, time
+import sys, signal
 import pyqtgraph as pg
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QPushButton, QLineEdit, QDialog, QDialogButtonBox, QFormLayout
 from PyQt6.QtGui import QFont
-from PyQt6.QtCore import QTimer, pyqtSignal
+from PyQt6.QtCore import pyqtSignal
 from enum import Enum
 
 
@@ -54,7 +54,7 @@ class UpdateConfigDialog(QDialog):
 
 class MainWindow(QMainWindow):
     vbatt_signal = pyqtSignal(float)
-    inversion_speed_signal = pyqtSignal(float)
+    inversion_speed_signal = pyqtSignal(float, float)
     state_signal = pyqtSignal(State)
     update_config_signal = pyqtSignal(float, float, float, float)
 
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
 
         self.LABEL_FONT = QFont('Helvetica', 24, QFont.Weight.ExtraLight)
         self.VALUE_FONT = QFont('Helvetica', 24, QFont.Weight.Medium)
-        self.LIVE_PLOTTER_MAX_SAMPLES = 100
+        self.LIVE_PLOTTER_MAX_SAMPLES = 500
         self.LABEL_STYLESHEET = '''
             background-color: #3B3B3B;
             border-radius: 12px;
@@ -193,6 +193,7 @@ class MainWindow(QMainWindow):
 
         self.live_plotter = pg.PlotWidget()
         self.live_plotter.setBackground(None)
+        self.live_plotter.setYRange(-600, 600)
         self.live_plotter.setTitle('Ankle Inversion Speed', family='Helvetica', color='white', size='20pt')
         self.live_plotter.setLabel('left', 'Inversion Speed (°/s)', family='Helvetica', size='20pt')
         self.live_plotter.setLabel('bottom', 'Time (s)', family='Helvetica', size='20pt')
@@ -246,13 +247,6 @@ class MainWindow(QMainWindow):
         widget.setLayout(layout_parent)
         self.setCentralWidget(widget)
 
-        self.start_time = time.time()
-
-        self.timer = QTimer()
-        self.timer.setInterval(100)
-        self.timer.timeout.connect(self.update)
-        self.timer.start()
-
     def update_state(self, state):
         if state is State.Calibrating:
             self.state.setText('CALIBRATING')
@@ -269,8 +263,8 @@ class MainWindow(QMainWindow):
         else:
             self.state.setText('')
 
-    def update_plot(self, inversion_speed):
-        self.live_plotter_x.append(time.time() - self.start_time)
+    def update_plot(self, inversion_speed, timestamp):
+        self.live_plotter_x.append(timestamp)
         self.live_plotter_y.append(inversion_speed)
         if len(self.live_plotter_x) > self.LIVE_PLOTTER_MAX_SAMPLES:
             self.live_plotter_x = self.live_plotter_x[1:]
@@ -331,9 +325,9 @@ class MainWindow(QMainWindow):
 
 ########## PUBLIC APIS ##########
 
-def g_update_inversion_speed(inversion_speed: float):
+def g_update_inversion_speed(inversion_speed: float, timestamp: float):
     global g_window
-    g_window.inversion_speed_signal.emit(inversion_speed)
+    g_window.inversion_speed_signal.emit(inversion_speed, timestamp)
 
 
 def g_update_state(state: State):
