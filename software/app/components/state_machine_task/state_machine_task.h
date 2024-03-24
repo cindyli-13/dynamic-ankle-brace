@@ -3,6 +3,7 @@
 #include "data_buffer.h"
 #include "driver/gpio.h"
 #include "ema_filter.h"
+#include "esp_timer.h"
 #include "gpio.h"
 #include "inversion_measuring.h"
 #include "rgb_led.h"
@@ -16,7 +17,7 @@ class StateMachineTask : public Task {
  public:
   struct Param {
     shared::IMUDataBuffer* imu_data_buffer;
-    DataBuffer<float, 20>* inversion_speed_buffer;
+    DataBuffer<shared::StampedInversionSpeed, 20>* inversion_speed_buffer;
     DataBuffer<shared::State, 1>* state_buffer;
     DataBuffer<bool, 1>* calibration_requested_buffer;
     DataBuffer<shared::Config, 1>* config_params_buffer;

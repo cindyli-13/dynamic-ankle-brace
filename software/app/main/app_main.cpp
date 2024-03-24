@@ -16,7 +16,7 @@ static constexpr size_t DEFAULT_TASK_STACK_SIZE = 8192;
 
 // Shared buffers
 static shared::IMUDataBuffer imu_data_buffer;
-static DataBuffer<float, 20> inversion_speed_buffer;
+static DataBuffer<shared::StampedInversionSpeed, 20> inversion_speed_buffer;
 static DataBuffer<shared::State, 1> state_buffer;
 static DataBuffer<bool, 1> calibration_requested_buffer;
 static DataBuffer<shared::Config, 1> config_params_buffer;

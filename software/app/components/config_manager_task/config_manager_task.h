@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "esp_event.h"
 #include "esp_mac.h"
 #include "esp_netif.h"
@@ -6,7 +7,6 @@
 #include "shared.h"
 #include "string.h"
 #include "task.h"
-#include <string>
 
 #include "lwip/err.h"
 #include "lwip/sockets.h"

@@ -78,10 +78,11 @@ void TelemetryTask::run(void* param) {
     if (active_) {
       int offset = 0;
       offset += snprintf(tx_buffer_ + offset, tx_buffer_size_ - offset, "INV:");
-      float inversion_speed;
-      while (task_param->inversion_speed_buffer->receive(inversion_speed)) {
+      shared::StampedInversionSpeed sample;
+      while (task_param->inversion_speed_buffer->receive(sample)) {
         offset += snprintf(tx_buffer_ + offset, tx_buffer_size_ - offset,
-                           "%.2f,", inversion_speed);
+                           "%.2f@%lld,", sample.inversion_speed_deg_s,
+                           sample.timestamp_us);
       }
 
       shared::State state;
@@ -111,6 +112,6 @@ void TelemetryTask::run(void* param) {
       }
     }
 
-    vTaskDelay(100 / portTICK_PERIOD_MS);  // run at 100 Hz
+    vTaskDelay(20 / portTICK_PERIOD_MS);  // run at 50 Hz
   }
 }

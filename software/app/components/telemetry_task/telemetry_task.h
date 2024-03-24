@@ -14,7 +14,7 @@
 class TelemetryTask : public Task {
  public:
   struct Param {
-    DataBuffer<float, 20>* inversion_speed_buffer;
+    DataBuffer<shared::StampedInversionSpeed, 20>* inversion_speed_buffer;
     DataBuffer<shared::State, 1>* state_buffer;
     DataBuffer<float, 1>* battery_voltage_buffer;
     DataBuffer<shared::Config, 1>* internal_config_buffer;
@@ -25,7 +25,7 @@ class TelemetryTask : public Task {
       : Task(config, param) {}
 
  private:
-  static constexpr size_t tx_buffer_size_ = 512;
+  static constexpr size_t tx_buffer_size_ = 1024;
   char tx_buffer_[tx_buffer_size_];
   int32_t telemetry_sock_;
   sockaddr_in dest_addr_;

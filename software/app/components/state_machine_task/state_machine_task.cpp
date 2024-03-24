@@ -116,8 +116,11 @@ void StateMachineTask::run(void* param) {
         break;
     }
     // update data for telemetry
-    float inversion_speed = inversion_speed_filter_.get();
-    task_param->inversion_speed_buffer->send(inversion_speed);
+    shared::StampedInversionSpeed sample = {
+        .inversion_speed_deg_s = inversion_speed_filter_.get(),
+        .timestamp_us = esp_timer_get_time(),
+    };
+    task_param->inversion_speed_buffer->send(sample);
     task_param->state_buffer->send(state_);
     set_status_led(state_);
 

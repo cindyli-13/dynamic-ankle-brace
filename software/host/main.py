@@ -1,7 +1,7 @@
-import threading, random
+import threading
 from gui import *
 import socket
-import time
+import re
 
 ESP32_IP_ADDR = "192.168.4.1"
 ESP32_LISTEN_PORT = 4242
@@ -57,27 +57,26 @@ def config_update_requested_callback(
 
 
 def update_telemetry(data):
-    inv_str = data.split("INV:")[1].split(",ST:")[0]
-    invs = inv_str.split(",")
+    parts = re.split(r'INV:|,ST:|,VB:|,inv_thresh:|,act_time:|,idle_var:|,idle_time:', data)
+
+    # Parsing inversion speeds
+    invs = parts[1].split(",")  # The part after "INV:" and before ",ST:"
     for inv in invs:
-        g_update_inversion_speed(float(inv))
-        time.sleep(1 / 1000)
+        val, timestamp = inv.split("@")
+        g_update_inversion_speed(float(val), float(timestamp) / 1e6)
 
-    state_str = data.split(",ST:")[1].split(",VB:")[0]
-    g_update_state(string_to_state[state_str])
+    # Update the state
+    g_update_state(string_to_state[parts[2]])  # The part after ",ST:" and before ",VB:"
 
-    vbat_str = data.split(",VB:")[1].split(",inv_thresh")[0]
-    g_update_vbatt(float(vbat_str) / 1000.0)
+    # Update vbatt
+    g_update_vbatt(float(parts[3]) / 1000.0)  # The part after ",VB:" and before ",inv_thresh"
 
-    inv_thresh_str = data.split("inv_thresh:")[1].split(",act_time")[0]
-    act_time_str = data.split("act_time:")[1].split(",idle_var")[0]
-    idle_var_str = data.split("idle_var:")[1].split(",idle_time")[0]
-    idle_time_str = data.split("idle_time:")[1]
+    # Parsing and updating configuration
     g_update_config(
-        float(inv_thresh_str),
-        float(act_time_str) / 1000.0,
-        float(idle_var_str),
-        float(idle_time_str) / 1000.0,
+        float(parts[4]),  # inv_thresh
+        float(parts[5]) / 1000.0,  # act_time
+        float(parts[6]),  # idle_var
+        float(parts[7]) / 1000.0,  # idle_time
     )
 
 
@@ -103,11 +102,8 @@ def user_thread():
     print("ESP32 Telemetry Started")
 
     while not g_gui_exited():
-        print("\nWaiting to receive message...")
         data, address = sock.recvfrom(4096)
-        print("Received {} bytes from {}".format(len(data), address))
         data = data.decode()
-        print(data)
         update_telemetry(data)
 
 

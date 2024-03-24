@@ -1,8 +1,8 @@
 #pragma once
 
+#include <string>
 #include "config.h"
 #include "data_buffer.h"
-#include <string>
 
 namespace shared {
 
@@ -56,6 +56,11 @@ struct TelemetryControl {
   bool start;
   uint16_t port;
   char addr[MAX_IP_ADDR_SIZE_];
+};
+
+struct StampedInversionSpeed {
+  float inversion_speed_deg_s;
+  int64_t timestamp_us;
 };
 
 }  // namespace shared
