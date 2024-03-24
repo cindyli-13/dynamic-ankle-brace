@@ -12,8 +12,10 @@ void StateMachineTask::init() {
 }
 
 void StateMachineTask::run(void* param) {
+  Param* task_param = static_cast<Param*>(param);
+  task_param->internal_config_buffer->send(config_);
+
   while (true) {
-    Param* task_param = static_cast<Param*>(param);
 
     shared::IMUData imu_data;
     while (task_param->imu_data_buffer->receive(imu_data)) {
@@ -46,6 +48,7 @@ void StateMachineTask::run(void* param) {
     shared::Config requested_config;
     if (task_param->config_params_buffer->receive(requested_config)) {
       config_ = requested_config;
+      task_param->internal_config_buffer->send(config_);
     }
 
     bool calibration_request = false;

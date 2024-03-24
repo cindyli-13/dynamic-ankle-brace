@@ -6,6 +6,7 @@
 #include "shared.h"
 #include "string.h"
 #include "task.h"
+#include <string>
 
 #include "lwip/err.h"
 #include "lwip/sockets.h"
@@ -16,6 +17,7 @@ class ConfigManagerTask : public Task {
   struct Param {
     DataBuffer<bool, 1>* calibration_requested_buffer;
     DataBuffer<shared::Config, 1>* config_params_buffer;
+    DataBuffer<shared::TelemetryControl, 1>* telemetry_control_buffer;
   };
 
   ConfigManagerTask(const Task::Config& config, Param* const param)
@@ -24,10 +26,17 @@ class ConfigManagerTask : public Task {
  private:
   static constexpr uint16_t config_port_ = 4242;
   static constexpr size_t rx_buffer_size_ = 256;
-  static constexpr size_t addr_buffer_size_ = 128;
+  static constexpr char config_label_[] = "CFG:";
+  static constexpr char telemetry_start_label_[] = "TELEMETRY_START:";
+  static constexpr char telemetry_stop_label_[] = "TELEMETRY_STOP";
+  static constexpr char calibration_request_label_[] = "CALIBRATE";
+
+  char rx_buffer_[rx_buffer_size_];
+  char addr_buffer_[shared::MAX_IP_ADDR_SIZE_];
   int32_t config_sock_;
 
   void init();
   void run(void* param);
-  void read_control_message(char* rx_buffer, char* addr_str);
+  bool read_control_message();
+  void handle_control_message(Param* task_param);
 };

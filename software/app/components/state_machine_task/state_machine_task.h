@@ -16,10 +16,11 @@ class StateMachineTask : public Task {
  public:
   struct Param {
     shared::IMUDataBuffer* imu_data_buffer;
-    DataBuffer<float, 10>* inversion_speed_buffer;
+    DataBuffer<float, 20>* inversion_speed_buffer;
     DataBuffer<shared::State, 1>* state_buffer;
     DataBuffer<bool, 1>* calibration_requested_buffer;
     DataBuffer<shared::Config, 1>* config_params_buffer;
+    DataBuffer<shared::Config, 1>* internal_config_buffer;
   };
 
   StateMachineTask(const Task::Config& config, Param* const param)

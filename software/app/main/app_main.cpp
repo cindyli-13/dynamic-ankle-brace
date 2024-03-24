@@ -16,11 +16,13 @@ static constexpr size_t DEFAULT_TASK_STACK_SIZE = 8192;
 
 // Shared buffers
 static shared::IMUDataBuffer imu_data_buffer;
-static DataBuffer<float, 10> inversion_speed_buffer;
+static DataBuffer<float, 20> inversion_speed_buffer;
 static DataBuffer<shared::State, 1> state_buffer;
 static DataBuffer<bool, 1> calibration_requested_buffer;
 static DataBuffer<shared::Config, 1> config_params_buffer;
+static DataBuffer<shared::Config, 1> internal_config_buffer;
 static DataBuffer<float, 1> battery_voltage_buffer;
+static DataBuffer<shared::TelemetryControl, 1> telemetry_control_buffer;
 
 // IMU Read Task
 static IMUReadTask::Param imu_read_task_param = {.imu_data_buffer =
@@ -50,6 +52,7 @@ static StateMachineTask::Param state_machine_task_param = {
     .state_buffer = &state_buffer,
     .calibration_requested_buffer = &calibration_requested_buffer,
     .config_params_buffer = &config_params_buffer,
+    .internal_config_buffer = &internal_config_buffer,
 };
 static StateMachineTask state_machine_task(state_machine_task_config,
                                            &state_machine_task_param);
@@ -79,6 +82,7 @@ static Task::Config config_manager_task_config = {
 static ConfigManagerTask::Param config_manager_task_param = {
     .calibration_requested_buffer = &calibration_requested_buffer,
     .config_params_buffer = &config_params_buffer,
+    .telemetry_control_buffer = &telemetry_control_buffer,
 };
 static ConfigManagerTask config_manager_task(config_manager_task_config,
                                              &config_manager_task_param);
@@ -96,6 +100,8 @@ static TelemetryTask::Param telemetry_task_param = {
     .inversion_speed_buffer = &inversion_speed_buffer,
     .state_buffer = &state_buffer,
     .battery_voltage_buffer = &battery_voltage_buffer,
+    .internal_config_buffer = &internal_config_buffer,
+    .telemetry_control_buffer = &telemetry_control_buffer,
 };
 static TelemetryTask telemetry_task(telemetry_task_config,
                                     &telemetry_task_param);
