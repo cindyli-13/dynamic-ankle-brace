@@ -2,7 +2,7 @@ import sys, signal, time
 import pyqtgraph as pg
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QPushButton, QLineEdit, QDialog, QDialogButtonBox, QFormLayout
 from PyQt6.QtGui import QFont
-from PyQt6.QtCore import QTimer, pyqtSignal
+from PyQt6.QtCore import pyqtSignal
 from enum import Enum
 
 
@@ -247,11 +247,6 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
         self.start_time = time.time()
-
-        self.timer = QTimer()
-        self.timer.setInterval(100)
-        self.timer.timeout.connect(self.update)
-        self.timer.start()
 
     def update_state(self, state):
         if state is State.Calibrating:
